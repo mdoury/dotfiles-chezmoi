@@ -1,4 +1,4 @@
-local get_icon = require('nvim-web-devicons').get_icon
+local get_icon = safe('nvim-web-devicons').get_icon
 local f_mod = vim.fn.fnamemodify
 local fmt = string.format
 local get_window_width = vim.api.nvim_win_get_width
@@ -86,7 +86,7 @@ local function render_label(props)
   }
 end
 
-require('incline').setup {
+safe('incline').setup {
   render = render_label,
   window = { zindex = 60, width = 'fit', winhighlight = { Normal = 'Normal' } },
   hide = { cursorline = 'focused_win', focused_win = false },

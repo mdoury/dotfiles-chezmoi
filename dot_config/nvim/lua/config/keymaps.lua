@@ -14,8 +14,15 @@ vim.keymap.set('n', '<leader>d', '<cmd>BufDel<cr>', { silent = true, nowait = tr
 vim.keymap.set('i', '<c-s>', '<esc><cmd>w<cr>a', silent)
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', silent)
 
+-- Exit insert mode with jk
+vim.keymap.set('i', 'jk', '<esc>', silent)
+vim.keymap.set('i', 'kj', '<esc>', silent)
+
 -- Version control
 vim.keymap.set('n', 'gs', '<cmd>Neogit<cr>', silent)
+
+-- Filesystem navigation
+vim.keymap.set('n', '\\', '<cmd>Neotree reveal<cr>', silent)
 
 -- Yank to clipboard
 vim.keymap.set('n', 'y+', '<cmd>set opfunc=util#clipboard_yank<cr>g@', silent)

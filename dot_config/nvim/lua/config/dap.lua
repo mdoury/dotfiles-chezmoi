@@ -1,4 +1,4 @@
-local dap = require 'dap'
+local dap = safe 'dap'
 
 -- Debugpy
 dap.adapters.python = {

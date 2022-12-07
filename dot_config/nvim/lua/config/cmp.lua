@@ -1,7 +1,7 @@
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
+local cmp = safe 'cmp'
+local luasnip = safe 'luasnip'
 luasnip.setup { region_check_events = 'InsertEnter', delete_check_events = 'InsertEnter' }
-require('luasnip.loaders.from_vscode').lazy_load()
+safe('luasnip.loaders.from_vscode').lazy_load()
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -24,7 +24,7 @@ cmp.setup {
       cmp.config.compare.offset,
       cmp.config.compare.exact,
       cmp.config.compare.score,
-      require('cmp-under-comparator').under,
+      safe('cmp-under-comparator').under,
       cmp.config.compare.kind,
       cmp.config.compare.sort_text,
       cmp.config.compare.length,
@@ -51,7 +51,7 @@ cmp.setup {
   formatting = {
     fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, vim_item)
-      local kind = require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 }(entry, vim_item)
+      local kind = safe('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 }(entry, vim_item)
       local strings = vim.split(kind.kind, '%s', { trimempty = true })
       kind.kind = ' ' .. strings[1] .. ' '
       kind.menu = '    (' .. strings[2] .. ')'

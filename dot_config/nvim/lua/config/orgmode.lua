@@ -1,4 +1,4 @@
-local orgmode = require 'orgmode'
+local orgmode = safe 'orgmode'
 orgmode.setup {
   org_agenda_files = { '~/notes/org/*', '~/projects/research/kavrakilab-research-log/**/*' },
   org_default_notes_file = '~/notes/org/notes.org',

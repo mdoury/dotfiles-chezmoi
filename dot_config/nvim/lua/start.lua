@@ -62,7 +62,7 @@ end
 
 local commands = {
   { key = 'e', disp = '  New file', cmd = 'ene | startinsert', editing = true },
-  { key = 'u', disp = '  Update plugins', cmd = 'PackerSync' },
+  { key = 'u', disp = '  Update plugins', cmd = 'PackerUpdate' },
   { key = 'b', disp = '  File Browser', cmd = 'Telescope file_browser' },
   { key = 'r', disp = '  Recent files', cmd = 'Telescope oldfiles' },
   { key = 's', disp = '  Start Prosession', cmd = 'Prosession .', editing = true },
@@ -71,7 +71,7 @@ local commands = {
   { key = 'q', disp = '  Quit', cmd = 'qa' },
 }
 
--- TODO: Maybe make the show functions unevaluated and run async? Would require rewriting using LUV
+-- TODO: Maybe make the show functions unevaluated and run async? Would safe rewriting using LUV
 -- functions, which isn't a bad idea anyway
 local sections = {
   { title = 'Commands', show = commands },
@@ -185,6 +185,7 @@ end
 
 local function do_binding(binding)
   if binding.editing then
+		print("User ActuallyEditing")
     vim.cmd [[ doautocmd User ActuallyEditing ]]
   end
 
@@ -192,6 +193,7 @@ local function do_binding(binding)
 end
 
 local function handle_key(key)
+	print(key)
   for _, binding in ipairs(keybindings) do
     if binding.key == key then
       do_binding(binding)

@@ -1,4 +1,4 @@
-local iron = require('iron')
+local iron = safe('iron')
 iron.core.add_repl_definitions {
   cpp =  {
     cling = {
