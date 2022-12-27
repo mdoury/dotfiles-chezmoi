@@ -51,7 +51,7 @@ def configure(repl):
     # Mouse support.
     repl.enable_mouse_support = True
 
-    # Complete while typing. (Don't require tab before the
+    # Complete while typing. (Don't Safe tab before the
     # completion menu is shown.)
     repl.complete_while_typing = True
 

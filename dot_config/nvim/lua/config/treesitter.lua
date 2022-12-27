@@ -1,4 +1,4 @@
-safe('nvim-treesitter.configs').setup {
+Safe('nvim-treesitter.configs').setup {
   auto_install = true,
   highlight = { enable = true },
   indent = { enable = false },

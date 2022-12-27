@@ -1,26 +1,24 @@
-require'impatient'.enable_profile()
-function safe(package)
-    local status, module = pcall(require, package)
-    if not status then
-        local n_status, notify = pcall(require, 'notify')
-        if not n_status then
-            print(notify, 'error')
-        else
-            notify(module, 'error')
-        end
-        return nil
-    end
+require('impatient').enable_profile()
+function Safe(package)
+  local status, module = pcall(require, package)
+  if status == nil then
+    error(module)
+  else
     return module
+  end
 end
+
 vim.notify = function(_, m, l, o)
-    local notify = safe 'notify'
+  local notify = Safe 'notify'
+  if notify then
     vim.notify = notify
     notify(_, m, l, o)
+  end
 end
-safe 'config.disable_builtins'
-safe 'config.options'
-safe 'config.autocmds'
-safe 'config.commands'
--- safe 'config.mason'
-safe 'config.keymaps'
-safe 'config.colorscheme'
+Safe 'config.disable_builtins'
+Safe 'config.options'
+Safe 'config.autocmds'
+Safe 'config.commands'
+Safe 'config.keymaps'
+Safe 'config.colorscheme'
+Safe 'config.lualine_setup'

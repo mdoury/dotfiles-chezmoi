@@ -7,7 +7,7 @@ autocmd('VimEnter', {
     }),
     once = true,
     callback = function()
-        require('start').start()
+        Safe('start').start()
     end
 })
 local misc_aucmds = augroup('misc_aucmds', {
@@ -30,7 +30,7 @@ autocmd('TextYankPost', {
 --   callback = function(args)
 --     local file_info = vim.loop.fs_stat(args.file)
 --     if file_info and file_info.type == 'directory' then
---       safe('neo-tree').setup {}
+--       Safe('neo-tree').setup {}
 --       vim.cmd('Neotree position=current ' .. args.file)
 --     end
 --   end,
@@ -38,7 +38,7 @@ autocmd('TextYankPost', {
 autocmd('BufReadPost', {
     group = misc_aucmds,
     callback = function()
-        safe('config.lsp')
+        Safe('config.lsp')
     end,
     once = true
 })

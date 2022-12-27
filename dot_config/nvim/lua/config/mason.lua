@@ -1,6 +1,6 @@
-local mason = safe("mason")
-local mason_lspconfig = safe("mason-lspconfig")
-local mason_null_ls = safe("mason-null-ls")
+local mason = Safe("mason")
+local mason_lspconfig = Safe("mason-lspconfig")
+local mason_null_ls = Safe("mason-null-ls")
 
 -- enable mason
 mason.setup({})

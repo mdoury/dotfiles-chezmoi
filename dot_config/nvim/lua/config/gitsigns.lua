@@ -1,4 +1,4 @@
-safe('gitsigns').setup {
+Safe('gitsigns').setup {
   signs = {
     add = { hl = 'GreenSign', text = '│', numhl = 'GitSignsAddNr' },
     change = { hl = 'BlueSign', text = '│', numhl = 'GitSignsChangeNr' },

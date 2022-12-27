@@ -1,10 +1,9 @@
 -- TODO: Could almost certainly make this a lot faster, especially by using Luv more directly in the
 -- MRU logic, making make_sections() construct the full table of strings first and then call
 -- set_lines only once (still need to deal with highlights), maybe making file info fill in async
-local icons = require 'nvim-web-devicons'
+local icons = Safe 'nvim-web-devicons'
 
 local counter = 15
-local total_paths = 15
 local offset = 5
 
 local function cap_path_length(path)
@@ -51,7 +50,9 @@ local function recent_files()
         key = tostring(#oldfiles),
         cmd = 'edit ' .. escaped_path,
         -- disp = cap_path_length(f_mod(absolute_path, ':~:.')), --get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length( f_mod(absolute_path, ':~:.')),
-        disp = get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length( f_mod(absolute_path, ':~:.')),
+        disp = get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length(
+          f_mod(absolute_path, ':~:.')
+        ),
         editing = true,
       }
     end
@@ -63,7 +64,7 @@ end
 local commands = {
   { key = 'e', disp = '  New file', cmd = 'ene | startinsert', editing = true },
   { key = 'u', disp = '  Update plugins', cmd = 'PackerUpdate' },
-  { key = 'b', disp = '  File Browser', cmd = 'Telescope file_browser' },
+  { key = 'b', disp = '  File Browser', cmd = 'Neotree toggle' },
   { key = 'r', disp = '  Recent files', cmd = 'Telescope oldfiles' },
   { key = 's', disp = '  Start Prosession', cmd = 'Prosession .', editing = true },
   { key = 'g', disp = '  NeoGit', cmd = 'Neogit' },
@@ -71,7 +72,7 @@ local commands = {
   { key = 'q', disp = '  Quit', cmd = 'qa' },
 }
 
--- TODO: Maybe make the show functions unevaluated and run async? Would safe rewriting using LUV
+-- TODO: Maybe make the show functions unevaluated and run async? Would Safe rewriting using LUV
 -- functions, which isn't a bad idea anyway
 local sections = {
   { title = 'Commands', show = commands },
@@ -109,13 +110,13 @@ local function make_sections()
   local linenr = 2
   set_lines(0, 0, 0, false, { '', '' })
   local longest_title, longest_item = longest_elems()
-  local title_indent = bit.arshift(win_width - longest_title, 1)
-  local section_indent = bit.arshift(win_width - longest_item - 4, 1)
+  local title_indent = math.floor((win_width - longest_title ) / 2)
+  local section_indent = math.floor((win_width - longest_item - 4)/ 2)
   offset = section_indent + 2
   local section_padding = string.rep(' ', section_indent)
   for _, section in ipairs(sections) do
     if next(section.show) ~= nil then
-      local section_title_indent = title_indent + bit.arshift(longest_title - string.len(section.title), 1)
+      local section_title_indent = title_indent + math.floor((longest_title - string.len(section.title)) / 2)
       local title_padding = string.rep(' ', section_title_indent)
       set_lines(0, linenr, linenr, false, { title_padding .. section.title, '' })
       highlight(0, -1, 'SpecialComment', linenr, 1, -1)
@@ -185,7 +186,7 @@ end
 
 local function do_binding(binding)
   if binding.editing then
-		print("User ActuallyEditing")
+    print 'User ActuallyEditing'
     vim.cmd [[ doautocmd User ActuallyEditing ]]
   end
 
@@ -193,7 +194,7 @@ local function do_binding(binding)
 end
 
 local function handle_key(key)
-	print(key)
+  print(key)
   for _, binding in ipairs(keybindings) do
     if binding.key == key then
       do_binding(binding)

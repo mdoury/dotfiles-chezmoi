@@ -1,7 +1,7 @@
--- safe('neodev').setup { lspconfig = { cmd = { 'lua-language-server' }, prefer_null_ls = true } }
-local lspconfig = safe('lspconfig')
-local null_ls = safe('null-ls')
--- local lightbulb = safe 'nvim-lightbulb'
+-- Safe('neodev').setup { lspconfig = { cmd = { 'lua-language-server' }, prefer_null_ls = true } }
+local lspconfig = Safe('lspconfig')
+local null_ls = Safe('null-ls')
+-- local lightbulb = Safe 'nvim-lightbulb'
 
 local lsp = vim.lsp
 local buf_keymap = vim.api.nvim_buf_set_keymap
@@ -48,7 +48,7 @@ lsp.handlers['window/showMessage'] = function(err, method, params, client_id)
     vim.notify(method.message, severity[params.type])
 end
 
-local signature = require('lsp_signature')
+local signature = Safe('lsp_signature')
 signature.setup {
     bind = true,
     handler_opts = {
@@ -64,7 +64,7 @@ local renamer_loaded = false
 
 local function on_attach(client)
     if not renamer_loaded then
-        require('renamer').setup {}
+        Safe('renamer').setup {}
         renamer_loaded = true
     end
 
@@ -80,8 +80,8 @@ local function on_attach(client)
     buf_keymap(0, 'n', 'gi', '<cmd>Glance implementations<CR>', keymap_opts)
     buf_keymap(0, 'n', 'gS', '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
     buf_keymap(0, 'n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', keymap_opts)
-    buf_keymap(0, 'n', '<leader>rn', '<cmd>lua safe"renamer".rename()<CR>', keymap_opts)
-    buf_keymap(0, 'v', '<leader>rn', '<cmd>lua safe"renamer".rename()<CR>', keymap_opts)
+    buf_keymap(0, 'n', '<leader>rn', '<cmd>lua Safe"renamer".rename()<CR>', keymap_opts)
+    buf_keymap(0, 'v', '<leader>rn', '<cmd>lua Safe"renamer".rename()<CR>', keymap_opts)
     buf_keymap(0, 'n', 'gr', '<cmd>Glance references<CR>', keymap_opts)
     buf_keymap(0, 'n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', keymap_opts)
     buf_keymap(0, 'v', 'gA', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', keymap_opts)
@@ -98,7 +98,7 @@ local function on_attach(client)
         cmd 'au CursorMoved <buffer> lua vim.lsp.buf.clear_references()'
     end
 
-    -- cmd 'au CursorHold,CursorHoldI <buffer> lua safe"nvim-lightbulb".update_lightbulb ()'
+    -- cmd 'au CursorHold,CursorHoldI <buffer> lua Safe"nvim-lightbulb".update_lightbulb ()'
     -- cmd 'au CursorHold,CursorHoldI <buffer> lua vim.diagnostic.open_float(0, { scope = "line" })'
     cmd 'augroup END'
 end
@@ -129,7 +129,7 @@ local servers = {
     },
     sumneko_lua = {
         cmd = {'lua-language-server'},
-        prefer_null_ls = false,
+        prefer_null_ls = true,
         settings = { -- custom settings for lua
             Lua = {
                 runtime = {
@@ -158,7 +158,7 @@ local servers = {
     vimls = {}
 }
 
-local client_capabilities = require('cmp_nvim_lsp').default_capabilities()
+local client_capabilities = Safe('cmp_nvim_lsp').default_capabilities()
 client_capabilities.offsetEncoding = {'utf-16'}
 
 for server, config in pairs(servers) do
