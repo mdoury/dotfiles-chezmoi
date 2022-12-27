@@ -1,7 +1,23 @@
+local ensure_packer = function()
+    local fn = vim.fn
+    local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
+        vim.cmd([[packadd packer.nvim]])
+        return true
+    end
+    return false
+end
+local packer_bootstrap = ensure_packer()
+
 local packer = nil
 local function init()
     if packer == nil then
         packer = safe 'packer'
+        if packer == nil then
+            vim.notify("Packer not found")
+            return
+        end
         packer.init {
             -- profile = {
             --     enable = true
@@ -22,7 +38,7 @@ local function init()
     end
 
     local use = packer.use
-    -- packer.reset()
+    packer.reset()
 
     -- Plugin manager
     use('wbthomason/packer.nvim')
@@ -30,8 +46,12 @@ local function init()
     -- Plugin caching
     use('lewis6991/impatient.nvim')
 
-		-- Profiling
-		use { 'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 15]] }
+    -- Profiling
+    use {
+        'dstein64/vim-startuptime',
+        cmd = 'StartupTime',
+        config = [[vim.g.startuptime_tries = 15]]
+    }
 
     -- Async building & commands
     use({
@@ -316,18 +336,14 @@ local function init()
         config = [[require 'config.treesitter']]
     }
 
-    use({
+    -- Completion and linting
+    use {'neovim/nvim-lspconfig', {
         'folke/trouble.nvim',
-        requires = 'kyazdani42/nvim-web-devicons',
+        cmd = {'Trouble', 'TroubleClose', 'TroubleToggle', 'TroubleRefresh'},
         config = function()
-            safe('trouble').setup({
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            })
-        end,
-        cmd = {'Trouble', 'TroubleClose', 'TroubleToggle', 'TroubleRefresh'}
-    })
+            safe('trouble').setup({})
+        end
+    }, 'ray-x/lsp_signature.nvim', {'kosayoda/nvim-lightbulb'}}
 
     -- Colorscheme
     use("arcticicestudio/nord-vim")
@@ -385,9 +401,9 @@ local function init()
     use({
         'williamboman/mason.nvim',
         event = "User ActuallyEditing",
-				config = function()
-					safe("config.mason")
-				end
+        config = function()
+            safe("config.mason")
+        end
     })
 
     use({
@@ -395,27 +411,25 @@ local function init()
         event = "User ActuallyEditing"
     })
 
-    use({
-        'neovim/nvim-lspconfig',
-    })
-    use({
-        'hrsh7th/cmp-nvim-lsp',
-    })
+    use({'hrsh7th/cmp-nvim-lsp'})
     use({
         'glepnir/lspsaga.nvim',
-        branch = 'main',
+        branch = 'main'
     })
-    use({
-        'jose-elias-alvarez/typescript.nvim',
-    })
-    use({
-        'onsails/lspkind.nvim',
-    })
+    use({'jose-elias-alvarez/typescript.nvim'})
+    use({'onsails/lspkind.nvim'})
 
     use({
         'jose-elias-alvarez/null-ls.nvim',
         event = "User ActuallyEditing"
     })
+    use {
+        'filipdutescu/renamer.nvim',
+        branch = 'master',
+        requires = {{'nvim-lua/plenary.nvim'}},
+        module = 'renamer',
+        event = "User ActuallyEditing"
+    }
     use({
         'jayp0521/mason-null-ls.nvim',
         event = "User ActuallyEditing"
@@ -498,6 +512,9 @@ local function init()
         end
     })
 
+    if packer_bootstrap then
+        require("packer").sync()
+    end
 end
 
 local plugins = setmetatable({}, {

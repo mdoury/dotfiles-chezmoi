@@ -22,7 +22,7 @@ vim.keymap.set('i', 'kj', '<esc>', silent)
 vim.keymap.set('n', 'gs', '<cmd>Neogit<cr>', silent)
 
 -- Filesystem navigation
-vim.keymap.set('n', '\\', '<cmd>Neotree reveal<cr>', silent)
+vim.keymap.set('n', '\\', '<cmd>Neotree toggle<cr>', silent)
 
 -- Yank to clipboard
 vim.keymap.set('n', 'y+', '<cmd>set opfunc=util#clipboard_yank<cr>g@', silent)

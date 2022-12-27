@@ -1,6 +1,6 @@
 -- safe('neodev').setup { lspconfig = { cmd = { 'lua-language-server' }, prefer_null_ls = true } }
-local lspconfig = safe 'lspconfig'
-local null_ls = safe 'null-ls'
+local lspconfig = safe('lspconfig')
+local null_ls = safe('null-ls')
 -- local lightbulb = safe 'nvim-lightbulb'
 
 local lsp = vim.lsp
@@ -48,7 +48,7 @@ lsp.handlers['window/showMessage'] = function(err, method, params, client_id)
     vim.notify(method.message, severity[params.type])
 end
 
-local signature = safe('lsp_signature')
+local signature = require('lsp_signature')
 signature.setup {
     bind = true,
     handler_opts = {
@@ -64,7 +64,7 @@ local renamer_loaded = false
 
 local function on_attach(client)
     if not renamer_loaded then
-        safe('renamer').setup {}
+        require('renamer').setup {}
         renamer_loaded = true
     end
 
@@ -129,7 +129,7 @@ local servers = {
     },
     sumneko_lua = {
         cmd = {'lua-language-server'},
-        prefer_null_ls = true,
+        prefer_null_ls = false,
         settings = { -- custom settings for lua
             Lua = {
                 runtime = {
@@ -138,7 +138,7 @@ local servers = {
                 },
                 -- make the language server recognize "vim" global
                 diagnostics = {
-                    globals = {"vim", "safe"}
+                    globals = {"vim"}
                 },
                 workspace = {
                     -- make language server aware of runtime files
@@ -158,7 +158,7 @@ local servers = {
     vimls = {}
 }
 
-local client_capabilities = safe('cmp_nvim_lsp').default_capabilities()
+local client_capabilities = require('cmp_nvim_lsp').default_capabilities()
 client_capabilities.offsetEncoding = {'utf-16'}
 
 for server, config in pairs(servers) do
@@ -185,7 +185,7 @@ local null_fmt = null_ls.builtins.formatting
 local null_diag = null_ls.builtins.diagnostics
 local null_act = null_ls.builtins.code_actions
 null_ls.setup {
-    sources = {null_diag.chktex, null_diag.proselint, null_diag.selene, null_diag.shellcheck, null_diag.vint,
+    sources = {null_diag.proselint, null_diag.selene.with({}), null_diag.shellcheck, null_diag.vint,
                null_fmt.prettier, null_fmt.shfmt, null_fmt.stylua, null_fmt.trim_whitespace, null_act.gitsigns,
                null_act.refactoring.with {
         filetypes = {'javascript', 'typescript', 'lua'}

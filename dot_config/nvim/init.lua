@@ -4,9 +4,9 @@ function safe(package)
     if not status then
         local n_status, notify = pcall(require, 'notify')
         if not n_status then
-            print("🚀 ~ error " .. package, 'error')
+            print(notify, 'error')
         else
-            notify("🚀 ~ error " .. package, 'error')
+            notify(module, 'error')
         end
         return nil
     end
