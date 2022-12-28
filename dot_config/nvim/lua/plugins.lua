@@ -406,9 +406,6 @@ local function init()
         'nvim-telescope/telescope-fzf-native.nvim',
         'nvim-telescope/telescope-ui-select.nvim',
       },
-      setup = function()
-        Safe 'config.telescope_setup'
-      end,
       config = function()
         Safe 'config.telescope'
       end,
@@ -507,6 +504,14 @@ local function init()
       'TimUntersberger/neogit',
       cmd = 'Neogit',
       config = [[Safe('config.neogit')]],
+      requires = {
+        { 'nvim-lua/plenary.nvim' },
+        -- {
+        --   'sindrets/diffview.nvim',
+        --   after = "neogit",
+        --   opt = true
+        -- },
+      },
     },
     {
       'akinsho/git-conflict.nvim',

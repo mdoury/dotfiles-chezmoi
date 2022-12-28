@@ -2,38 +2,110 @@
 vim.g.mapleader = [[ ]]
 vim.g.maplocalleader = [[,]]
 
--- Keybindings
-local silent = { silent = true, noremap = true }
+local wk = Safe('which-key')
+wk.register({
+    name = 'Find',
+    f = {'<cmd>Telescope find_files<cr> theme=get_dropdown<cr>', 'Find File By Name'},
+    r = {'<cmd>Telescope oldfiles<cr> theme=get_dropdown<cr>', 'Find Recent File'},
+    c = {'<cmd>Telescope commands theme=get_dropdown<cr>', 'Find Command'},
+    b = {'<cmd>Telescope buffers show_all_buffers=true theme=get_dropdown<cr>', 'Find Buffer'},
+    s = {'<cmd>Telescope git_files theme=get_dropdown<cr>', 'Find Git File'},
+    g = {'<cmd>Telescope live_grep theme=get_dropdown<cr>', 'Find File By Content'}
+}, {
+    prefix = '<leader>f'
+})
 
--- Quit, close buffers, etc.
-vim.keymap.set('n', '<leader>q', '<cmd>qa<cr>', silent)
-vim.keymap.set('n', '<leader>x', '<cmd>x!<cr>', silent)
-vim.keymap.set('n', '<leader>d', '<cmd>BufDel<cr>', { silent = true, nowait = true, noremap = true })
+wk.register({
+    name = 'Back To Normal',
+    ['jk'] = {'<esc>', 'Exit Insert Mode'},
+    ['kj'] = {'<esc>', 'Exit Insert Mode'}
+}, {
+    mode = 'i'
+})
 
--- Save buffer
-vim.keymap.set('i', '<c-s>', '<esc><cmd>w<cr>a', silent)
-vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', silent)
+wk.register({
+    name = 'Back To Normal',
+    jk = {'<esc>', 'Exit Visual Mode'},
+    kj = {'<esc>', 'Exit Visual Mode'}
+}, {
+    mode = 'v'
+})
 
--- Exit insert mode with jk
-vim.keymap.set('i', 'jk', '<esc>', silent)
-vim.keymap.set('i', 'kj', '<esc>', silent)
+wk.register({
+    name = 'Close',
+    q = {'<cmd>qa<cr>', 'Quit'},
+    x = {'<cmd>x!<cr>', 'Save And Quit'},
+    d = {
+        '<cmd>BufDel<cr>',
+        'Delete Buffer',
+        nowait = true
+    }
+}, {
+    prefix = '<leader>'
+})
 
--- Version control
-vim.keymap.set('n', 'gs', '<cmd>Neogit<cr>', silent)
+wk.register({
+    name = 'Git',
+    s = {'<cmd>Neogit<cr>', 'Open Neogit'}
+}, {
+    prefix = '<leader>g'
+})
 
--- Filesystem navigation
-vim.keymap.set('n', '\\', '<cmd>Neotree toggle<cr>', silent)
+wk.register({
+    name = 'Save',
+    ['<c-s>'] = {'<esc><cmd>w<cr>a', 'Save File'}
+}, {
+    mode = 'i'
+})
 
--- Yank to clipboard
-vim.keymap.set('n', 'y+', '<cmd>set opfunc=util#clipboard_yank<cr>g@', silent)
-vim.keymap.set('v', 'y+', '<cmd>set opfunc=util#clipboard_yank<cr>g@', silent)
+wk.register({
+    name = 'Save',
+    ['<leader>s']= {'<cmd>w<cr>', 'Save'},
+    ['<c-s>'] = { '<cmd>w<cr>', 'Save'}
+})
 
--- Window movement
-vim.keymap.set('n', '<c-h>', '<c-w>h', silent)
-vim.keymap.set('n', '<c-j>', '<c-w>j', silent)
-vim.keymap.set('n', '<c-k>', '<c-w>k', silent)
-vim.keymap.set('n', '<c-l>', '<c-w>l', silent)
+wk.register({
+    name = 'Tree',
+    ['\\'] = {'<cmd>Neotree toggle<cr>', 'Toggle Neotree'}
+}, {
+    prefix = '<leader>'
+})
 
--- Tab movement
-vim.keymap.set('n', '<c-Left>', '<cmd>tabpre<cr>', silent)
-vim.keymap.set('n', '<c-Right>', '<cmd>tabnext<cr>', silent)
+wk.register({
+    name = 'Copy/Paste',
+    y = {'"+y', 'Yank to clipboard'},
+    Y = {'"+y', 'Yank to clipboard'},
+    yy = {'"+y', 'Yank to clipboard'},
+    p = {'"+p', 'Paste After'},
+    P = {'"+P', 'Paste Before'}
+}, {
+    prefix = '<leader>'
+})
+
+wk.register({
+    name = 'Copy/Paste',
+    y = {'"+y', 'Yank to clipboard'},
+    p = {'"+p', 'Paste After'},
+    P = {'"+P', 'Paste Before'}
+}, {
+    mode = 'v',
+    prefix = '<leader>'
+})
+
+wk.register({
+    name = 'Windows',
+    ['<c-h>'] = {'<c-w>h', 'Move to left window'},
+    ['<c-j>'] = {'<c-w>j', 'Move to bottom window'},
+    ['<c-k>'] = {'<c-w>k', 'Move to top window'},
+    ['<c-l>'] = {'<c-w>l', 'Move to right window'}
+})
+
+wk.register({
+    name = 'Tabs',
+    t = {':tabnew<cr>', 'New Tab'},
+    w = {':tabclose<cr>', 'Close Tab'},
+    n = {':tabn<cr>', 'Next Tab'},
+    p = {':tabp<cr>', 'Previous Tab'}
+}, {
+    prefix = '<leader>t'
+})
