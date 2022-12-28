@@ -15,10 +15,12 @@ vim.notify = function(_, m, l, o)
     notify(_, m, l, o)
   end
 end
+
 Safe 'config.disable_builtins'
 Safe 'config.options'
 Safe 'config.autocmds'
 Safe 'config.commands'
-Safe 'config.keymaps'
+-- Safe 'config.keymaps'
 Safe 'config.colorscheme'
+
 Safe 'config.lualine_setup'

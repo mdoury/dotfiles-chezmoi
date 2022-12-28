@@ -3,7 +3,15 @@ local mason_lspconfig = Safe("mason-lspconfig")
 local mason_null_ls = Safe("mason-null-ls")
 
 -- enable mason
-mason.setup({})
+mason.setup({
+  ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
 
 mason_lspconfig.setup({
   -- list of servers for mason to install
@@ -37,7 +45,6 @@ mason_null_ls.setup({
 		"vint", -- vim script linter
 		-- code actions
 		"gitsigns", -- git actions from gitsigns gutter
-		"refactoring", -- refactoring actions
   },
   -- auto-install configured formatters & linters (with null-ls)
   automatic_installation = true,

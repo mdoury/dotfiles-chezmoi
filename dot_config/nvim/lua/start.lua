@@ -65,10 +65,10 @@ local commands = {
   { key = 'e', disp = '  New file', cmd = 'ene | startinsert', editing = true },
   { key = 'u', disp = '  Update plugins', cmd = 'PackerUpdate' },
   { key = 'b', disp = '  File Browser', cmd = 'Neotree toggle' },
-  { key = 'r', disp = '  Recent files', cmd = 'Telescope oldfiles' },
-  { key = 's', disp = '  Start Prosession', cmd = 'Prosession .', editing = true },
+  { key = 'r', disp = '  Recent files', cmd = 'Telescope oldfiles theme=get_dropdown' },
+  { key = 'f', disp = '  Find files', cmd = 'Telescope find_files theme=get_dropdown' },
   { key = 'g', disp = '  NeoGit', cmd = 'Neogit' },
-  { key = 't', disp = '⏱  Time startup', cmd = 'StartupTime' },
+  { key = 't', disp = '  Time startup', cmd = 'StartupTime' },
   { key = 'q', disp = '  Quit', cmd = 'qa' },
 }
 
@@ -110,8 +110,8 @@ local function make_sections()
   local linenr = 2
   set_lines(0, 0, 0, false, { '', '' })
   local longest_title, longest_item = longest_elems()
-  local title_indent = math.floor((win_width - longest_title ) / 2)
-  local section_indent = math.floor((win_width - longest_item - 4)/ 2)
+  local title_indent = math.floor((win_width - longest_title) / 2)
+  local section_indent = math.floor((win_width - longest_item - 4) / 2)
   offset = section_indent + 2
   local section_padding = string.rep(' ', section_indent)
   for _, section in ipairs(sections) do
@@ -186,7 +186,6 @@ end
 
 local function do_binding(binding)
   if binding.editing then
-    print 'User ActuallyEditing'
     vim.cmd [[ doautocmd User ActuallyEditing ]]
   end
 

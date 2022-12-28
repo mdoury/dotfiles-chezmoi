@@ -76,8 +76,9 @@ local function init()
     'folke/which-key.nvim',
     config = function()
       Safe('which-key').setup {}
+      Safe 'config.keymaps'
     end,
-    event = 'BufReadPost',
+    event = 'User ActuallyEditing',
   }
 
   -- Motions
@@ -156,13 +157,11 @@ local function init()
 
   use { 'nvim-lua/plenary.nvim' }
 
-  use { 'bluz71/vim-nightfly-guicolors' }
-
   use { 'christoomey/vim-tmux-navigator' }
 
-  use { 'szw/vim-maximizer' }
+  use { 'szw/vim-maximizer', cmd = 'MaximizerToggle' }
 
-  use { 'inkarkat/vim-ReplaceWithRegister' }
+  -- use { 'inkarkat/vim-ReplaceWithRegister' }
 
   -- Path navigation
   use {
@@ -374,7 +373,7 @@ local function init()
   }
 
   -- Colorscheme
-  use 'arcticicestudio/nord-vim'
+  use { 'arcticicestudio/nord-vim', event = 'User ActuallyEditing'}
 
   -- Pretty UI
   use 'stevearc/dressing.nvim'
@@ -460,7 +459,7 @@ local function init()
 
   use {
     'jose-elias-alvarez/null-ls.nvim',
-    event = 'User ActuallyEditing',
+    -- event = 'User ActuallyEditing',
   }
   use {
     'filipdutescu/renamer.nvim',
@@ -486,6 +485,7 @@ local function init()
         },
       }
     end,
+    event = 'User ActuallyEditing',
   }
   use {
     'windwp/nvim-ts-autotag',
@@ -552,9 +552,6 @@ local function init()
           enable = true,
           top_char = '─',
           bottom_char = '─',
-        },
-        theme = {
-          mode = 'brighten',
         },
         indent_lines = {
           icon = '│',
