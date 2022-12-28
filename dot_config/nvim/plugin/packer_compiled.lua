@@ -235,7 +235,7 @@ _G.packer_plugins = {
   },
   ["neo-tree.nvim"] = {
     commands = { "Neotree" },
-    config = { "\27LJ\2\nË\f\0\0\b\0.\0B6\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\0\0009\0\3\0009\0\4\0\18\1\0\0'\3\5\0005\4\6\0B\1\3\1\18\1\0\0'\3\a\0005\4\b\0B\1\3\1\18\1\0\0'\3\t\0005\4\n\0B\1\3\1\18\1\0\0'\3\v\0005\4\f\0B\1\3\0016\1\r\0'\3\14\0B\1\2\0029\1\15\0015\3\16\0005\4\17\0005\5\18\0=\5\19\0045\5\21\0005\6\20\0=\6\22\0055\6\23\0005\a\24\0=\a\25\6=\6\26\0055\6\27\0005\a\28\0=\a\25\6=\6\29\5=\5\30\4=\4\31\0035\4!\0005\5 \0=\5\"\0045\5$\0005\6#\0=\6\30\5=\5\31\4=\4%\0035\4(\0005\5'\0005\6&\0=\6\30\5=\5\31\4=\4)\0035\4,\0005\5*\0005\6+\0=\6\30\5=\5\31\4=\4-\3B\1\2\1K\0\1\0\15git_status\1\0\0\1\0\a\agc\15git_commit\agp\rgit_push\agr\20git_revert_file\6A\16git_add_all\aga\17git_add_file\agg\24git_commit_and_push\agu\21git_unstage_file\1\0\1\rposition\nfloat\fbuffers\1\0\0\1\0\0\1\0\3\t<bs>\16navigate_up\abd\18buffer_delete\6.\rset_root\15filesystem\1\0\0\1\0\t\a]g\22next_git_modified\6/\17fuzzy_finder\6H\18toggle_hidden\6D\27fuzzy_finder_directory\a[g\22prev_git_modified\n<c-x>\17clear_filter\6f\21filter_on_submit\t<bs>\16navigate_up\6.\rset_root\19filtered_items\1\0\1\24follow_current_file\2\1\0\4\16hide_hidden\1\fvisible\1\18hide_dotfiles\1\20hide_gitignored\1\vwindow\rmappings\6a\1\0\1\14show_path\tnone\1\2\0\0\badd\6P\vconfig\1\0\1\14use_float\2\1\2\0\0\19toggle_preview\f<space>\1\0\22\6d\vdelete\6s\16open_vsplit\6A\18add_directory\6S\15open_split\6r\vrename\6m\tmove\6R\frefresh\n<esc>\19revert_preview\18<2-LeftMouse>\topen\6p\25paste_from_clipboard\t<cr>\topen\6<\16prev_source\6?\14show_help\6c\tcopy\6>\16next_source\6z\20close_all_nodes\6y\22copy_to_clipboard\6q\17close_window\6C\15close_node\6x\21cut_to_clipboard\6w\28open_with_window_picker\6t\16open_tabnew\1\2\1\0\16toggle_node\vnowait\1\20mapping_options\1\0\2\vnowait\2\fnoremap\2\1\0\2\nwidth\3(\rposition\tleft\1\0\2\23popup_border_style\frounded\25close_if_last_window\2\nsetup\rneo-tree\tSafe\1\0\2\vtexthl\23DiagnosticSignHint\ttext\bÔ†¥\23DiagnosticSignHint\1\0\2\vtexthl\23DiagnosticSignInfo\ttext\tÔÅö \23DiagnosticSignInfo\1\0\2\vtexthl\23DiagnosticSignWarn\ttext\tÔÅ± \23DiagnosticSignWarn\1\0\2\vtexthl\24DiagnosticSignError\ttext\tÔÅó \24DiagnosticSignError\16sign_define\afn0 let g:neo_tree_remove_legacy_commands = 1 \bcmd\bvim\0" },
+    config = { "\27LJ\2\nË\f\0\0\b\0.\0B6\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\0\0009\0\3\0009\0\4\0\18\1\0\0'\3\5\0005\4\6\0B\1\3\1\18\1\0\0'\3\a\0005\4\b\0B\1\3\1\18\1\0\0'\3\t\0005\4\n\0B\1\3\1\18\1\0\0'\3\v\0005\4\f\0B\1\3\0016\1\r\0'\3\14\0B\1\2\0029\1\15\0015\3\16\0005\4\17\0005\5\18\0=\5\19\0045\5\21\0005\6\20\0=\6\22\0055\6\23\0005\a\24\0=\a\25\6=\6\26\0055\6\27\0005\a\28\0=\a\25\6=\6\29\5=\5\30\4=\4\31\0035\4!\0005\5 \0=\5\"\0045\5$\0005\6#\0=\6\30\5=\5\31\4=\4%\0035\4(\0005\5'\0005\6&\0=\6\30\5=\5\31\4=\4)\0035\4,\0005\5*\0005\6+\0=\6\30\5=\5\31\4=\4-\3B\1\2\1K\0\1\0\15git_status\1\0\0\1\0\a\agc\15git_commit\agg\24git_commit_and_push\aga\17git_add_file\agp\rgit_push\agu\21git_unstage_file\6A\16git_add_all\agr\20git_revert_file\1\0\1\rposition\nfloat\fbuffers\1\0\0\1\0\0\1\0\3\t<bs>\16navigate_up\6.\rset_root\abd\18buffer_delete\15filesystem\1\0\0\1\0\t\a[g\22prev_git_modified\n<c-x>\17clear_filter\t<bs>\16navigate_up\6H\18toggle_hidden\6D\27fuzzy_finder_directory\6f\21filter_on_submit\6/\17fuzzy_finder\6.\rset_root\a]g\22next_git_modified\19filtered_items\1\0\1\24follow_current_file\2\1\0\4\20hide_gitignored\1\fvisible\1\18hide_dotfiles\1\16hide_hidden\1\vwindow\rmappings\6a\1\0\1\14show_path\tnone\1\2\0\0\badd\6P\vconfig\1\0\1\14use_float\2\1\2\0\0\19toggle_preview\f<space>\1\0\22\6A\18add_directory\18<2-LeftMouse>\topen\6s\16open_vsplit\6z\20close_all_nodes\6w\28open_with_window_picker\6y\22copy_to_clipboard\6m\tmove\6q\17close_window\6S\15open_split\6R\frefresh\t<cr>\topen\n<esc>\19revert_preview\6<\16prev_source\6?\14show_help\6>\16next_source\6C\15close_node\6p\25paste_from_clipboard\6x\21cut_to_clipboard\6d\vdelete\6c\tcopy\6t\16open_tabnew\6r\vrename\1\2\1\0\16toggle_node\vnowait\1\20mapping_options\1\0\2\vnowait\2\fnoremap\2\1\0\2\nwidth\3(\rposition\tleft\1\0\2\25close_if_last_window\2\23popup_border_style\frounded\nsetup\rneo-tree\tSafe\1\0\2\ttext\bÔ†¥\vtexthl\23DiagnosticSignHint\23DiagnosticSignHint\1\0\2\ttext\tÔÅö \vtexthl\23DiagnosticSignInfo\23DiagnosticSignInfo\1\0\2\ttext\tÔÅ± \vtexthl\23DiagnosticSignWarn\23DiagnosticSignWarn\1\0\2\ttext\tÔÅó \vtexthl\24DiagnosticSignError\24DiagnosticSignError\16sign_define\afn0 let g:neo_tree_remove_legacy_commands = 1 \bcmd\bvim\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -309,7 +309,7 @@ _G.packer_plugins = {
     url = "https://github.com/rcarriga/nvim-notify"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-treesitter-textsubjects", "indent-blankline.nvim", "nvim-treesitter-refactor", "nvim-ts-autotag" },
+    after = { "indent-blankline.nvim", "nvim-treesitter-textsubjects", "nvim-treesitter-refactor", "nvim-ts-autotag" },
     config = { "Safe 'config.treesitter'" },
     loaded = false,
     needs_bufread = false,
@@ -350,7 +350,7 @@ _G.packer_plugins = {
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["nvim-window-picker"] = {
-    config = { "\27LJ\2\n˚\1\0\0\6\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\t\0005\4\5\0005\5\4\0=\5\6\0045\5\a\0=\5\b\4=\4\n\3=\3\v\2B\0\2\1K\0\1\0\17filter_rules\abo\1\0\0\fbuftype\1\3\0\0\rterminal\rquickfix\rfiletype\1\0\0\1\4\0\0\rneo-tree\19neo-tree-popup\vnotify\1\0\3\19autoselect_one\2\23other_win_hl_color\f#e35e4f\20include_current\1\nsetup\18window-picker\tSafe\0" },
+    config = { "\27LJ\2\n˚\1\0\0\6\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\t\0005\4\5\0005\5\4\0=\5\6\0045\5\a\0=\5\b\4=\4\n\3=\3\v\2B\0\2\1K\0\1\0\17filter_rules\abo\1\0\0\fbuftype\1\3\0\0\rterminal\rquickfix\rfiletype\1\0\0\1\4\0\0\rneo-tree\19neo-tree-popup\vnotify\1\0\3\19autoselect_one\2\20include_current\1\23other_win_hl_color\f#e35e4f\nsetup\18window-picker\tSafe\0" },
     loaded = true,
     path = "/Users/maiia/.local/share/nvim/site/pack/packer/start/nvim-window-picker",
     url = "https://github.com/s1n7ax/nvim-window-picker"
@@ -538,52 +538,34 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Setup for: telescope.nvim
-time([[Setup for telescope.nvim]], true)
-try_loadstring("\27LJ\2\n3\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\27config.telescope_setup\tSafe\0", "setup", "telescope.nvim")
-time([[Setup for telescope.nvim]], false)
 -- Setup for: vim-matchup
 time([[Setup for vim-matchup]], true)
 try_loadstring("\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19config.matchup\tSafe\0", "setup", "vim-matchup")
 time([[Setup for vim-matchup]], false)
+-- Config for: nvim-window-picker
+time([[Config for nvim-window-picker]], true)
+try_loadstring("\27LJ\2\n˚\1\0\0\6\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\t\0005\4\5\0005\5\4\0=\5\6\0045\5\a\0=\5\b\4=\4\n\3=\3\v\2B\0\2\1K\0\1\0\17filter_rules\abo\1\0\0\fbuftype\1\3\0\0\rterminal\rquickfix\rfiletype\1\0\0\1\4\0\0\rneo-tree\19neo-tree-popup\vnotify\1\0\3\19autoselect_one\2\20include_current\1\23other_win_hl_color\f#e35e4f\nsetup\18window-picker\tSafe\0", "config", "nvim-window-picker")
+time([[Config for nvim-window-picker]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n£\1\0\0\5\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\5\0005\4\4\0=\4\6\0035\4\a\0=\4\b\3=\3\t\2B\0\2\1K\0\1\0\14ts_config\15javascript\1\2\0\0\20template_string\blua\1\0\1\tjava\1\1\2\0\0\vstring\1\0\1\rcheck_ts\2\nsetup\19nvim-autopairs\tSafe\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
--- Config for: nvim-window-picker
-time([[Config for nvim-window-picker]], true)
-try_loadstring("\27LJ\2\n˚\1\0\0\6\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\t\0005\4\5\0005\5\4\0=\5\6\0045\5\a\0=\5\b\4=\4\n\3=\3\v\2B\0\2\1K\0\1\0\17filter_rules\abo\1\0\0\fbuftype\1\3\0\0\rterminal\rquickfix\rfiletype\1\0\0\1\4\0\0\rneo-tree\19neo-tree-popup\vnotify\1\0\3\19autoselect_one\2\23other_win_hl_color\f#e35e4f\20include_current\1\nsetup\18window-picker\tSafe\0", "config", "nvim-window-picker")
-time([[Config for nvim-window-picker]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
+pcall(vim.api.nvim_create_user_command, 'Neotree', function(cmdargs)
+          require('packer.load')({'neo-tree.nvim'}, { cmd = 'Neotree', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'neo-tree.nvim'}, { cmd = 'Neotree' }, _G.packer_plugins)
+          return vim.fn.getcompletion('Neotree ', 'cmdline')
+      end})
 pcall(vim.api.nvim_create_user_command, 'UndotreeToggle', function(cmdargs)
           require('packer.load')({'undotree'}, { cmd = 'UndotreeToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
           require('packer.load')({'undotree'}, { cmd = 'UndotreeToggle' }, _G.packer_plugins)
           return vim.fn.getcompletion('UndotreeToggle ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'TroubleClose', function(cmdargs)
-          require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleClose', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleClose' }, _G.packer_plugins)
-          return vim.fn.getcompletion('TroubleClose ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'TroubleToggle', function(cmdargs)
-          require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleToggle' }, _G.packer_plugins)
-          return vim.fn.getcompletion('TroubleToggle ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'BufDel', function(cmdargs)
-          require('packer.load')({'nvim-bufdel'}, { cmd = 'BufDel', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'nvim-bufdel'}, { cmd = 'BufDel' }, _G.packer_plugins)
-          return vim.fn.getcompletion('BufDel ', 'cmdline')
       end})
 pcall(vim.api.nvim_create_user_command, 'TroubleRefresh', function(cmdargs)
           require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleRefresh', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
@@ -606,19 +588,19 @@ pcall(vim.api.nvim_create_user_command, 'Glance', function(cmdargs)
           require('packer.load')({'glance.nvim'}, { cmd = 'Glance' }, _G.packer_plugins)
           return vim.fn.getcompletion('Glance ', 'cmdline')
       end})
-pcall(vim.api.nvim_create_user_command, 'Neotree', function(cmdargs)
-          require('packer.load')({'neo-tree.nvim'}, { cmd = 'Neotree', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+pcall(vim.api.nvim_create_user_command, 'Telescope', function(cmdargs)
+          require('packer.load')({'telescope.nvim'}, { cmd = 'Telescope', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'neo-tree.nvim'}, { cmd = 'Neotree' }, _G.packer_plugins)
-          return vim.fn.getcompletion('Neotree ', 'cmdline')
+          require('packer.load')({'telescope.nvim'}, { cmd = 'Telescope' }, _G.packer_plugins)
+          return vim.fn.getcompletion('Telescope ', 'cmdline')
       end})
-pcall(vim.api.nvim_create_user_command, 'Trouble', function(cmdargs)
-          require('packer.load')({'trouble.nvim'}, { cmd = 'Trouble', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+pcall(vim.api.nvim_create_user_command, 'TroubleToggle', function(cmdargs)
+          require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'trouble.nvim'}, { cmd = 'Trouble' }, _G.packer_plugins)
-          return vim.fn.getcompletion('Trouble ', 'cmdline')
+          require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleToggle' }, _G.packer_plugins)
+          return vim.fn.getcompletion('TroubleToggle ', 'cmdline')
       end})
 pcall(vim.api.nvim_create_user_command, 'StartupTime', function(cmdargs)
           require('packer.load')({'vim-startuptime'}, { cmd = 'StartupTime', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
@@ -627,12 +609,26 @@ pcall(vim.api.nvim_create_user_command, 'StartupTime', function(cmdargs)
           require('packer.load')({'vim-startuptime'}, { cmd = 'StartupTime' }, _G.packer_plugins)
           return vim.fn.getcompletion('StartupTime ', 'cmdline')
       end})
-pcall(vim.api.nvim_create_user_command, 'Telescope', function(cmdargs)
-          require('packer.load')({'telescope.nvim'}, { cmd = 'Telescope', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+pcall(vim.api.nvim_create_user_command, 'TroubleClose', function(cmdargs)
+          require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleClose', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'telescope.nvim'}, { cmd = 'Telescope' }, _G.packer_plugins)
-          return vim.fn.getcompletion('Telescope ', 'cmdline')
+          require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleClose' }, _G.packer_plugins)
+          return vim.fn.getcompletion('TroubleClose ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'BufDel', function(cmdargs)
+          require('packer.load')({'nvim-bufdel'}, { cmd = 'BufDel', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'nvim-bufdel'}, { cmd = 'BufDel' }, _G.packer_plugins)
+          return vim.fn.getcompletion('BufDel ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Trouble', function(cmdargs)
+          require('packer.load')({'trouble.nvim'}, { cmd = 'Trouble', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'trouble.nvim'}, { cmd = 'Trouble' }, _G.packer_plugins)
+          return vim.fn.getcompletion('Trouble ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)
 
@@ -640,9 +636,9 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au User ActuallyEditing ++once lua require("packer.load")({'gitsigns.nvim', 'renamer.nvim', 'flit.nvim', 'vim-wordmotion', 'vim-sandwich', 'vim-matchup', 'Comment.nvim', 'nvim-treesitter', 'null-ls.nvim', 'mason.nvim', 'mason-null-ls.nvim', 'mason-lspconfig.nvim', 'leap.nvim'}, { event = "User ActuallyEditing" }, _G.packer_plugins)]]
-vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'hover.nvim', 'which-key.nvim', 'todo-comments.nvim', 'git-conflict.nvim'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'LuaSnip', 'cmp_luasnip', 'friendly-snippets'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'hover.nvim', 'git-conflict.nvim', 'todo-comments.nvim', 'which-key.nvim'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'friendly-snippets', 'LuaSnip', 'cmp_luasnip'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au User ActuallyEditing ++once lua require("packer.load")({'null-ls.nvim', 'renamer.nvim', 'mason.nvim', 'mason-null-ls.nvim', 'mason-lspconfig.nvim', 'vim-sandwich', 'leap.nvim', 'vim-matchup', 'gitsigns.nvim', 'flit.nvim', 'Comment.nvim', 'vim-wordmotion', 'nvim-treesitter'}, { event = "User ActuallyEditing" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 
