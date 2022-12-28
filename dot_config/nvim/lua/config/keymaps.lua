@@ -67,8 +67,6 @@ wk.register({
 wk.register({
     name = 'Tree',
     ['\\'] = {'<cmd>Neotree toggle<cr>', 'Toggle Neotree'}
-}, {
-    prefix = '<leader>'
 })
 
 wk.register({
