@@ -1,4 +1,5 @@
-require('impatient').enable_profile()
+require 'impatient'
+
 function Safe(package)
   local status, module = pcall(require, package)
   if status == nil then
@@ -20,7 +21,6 @@ Safe 'config.disable_builtins'
 Safe 'config.options'
 Safe 'config.autocmds'
 Safe 'config.commands'
--- Safe 'config.keymaps'
 Safe 'config.colorscheme'
-
 Safe 'config.lualine_setup'
+Safe 'config.keymaps_setup'

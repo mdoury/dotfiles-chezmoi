@@ -1,10 +1,7 @@
--- Leader/local leader
-vim.g.mapleader = [[ ]]
-vim.g.maplocalleader = [[,]]
-
 local wk = Safe 'which-key'
+
 wk.register({
-  name = 'Find',
+name = 'Find',
   f = { '<cmd>Telescope find_files theme=get_dropdown<cr>', 'Find File By Name' },
   r = { '<cmd>Telescope oldfiles theme=get_dropdown<cr>', 'Find Recent File' },
   c = { '<cmd>Telescope commands theme=get_dropdown<cr>', 'Find Command' },
@@ -64,11 +61,6 @@ wk.register {
   ['<c-s>'] = { '<cmd>w<cr>', 'Save' },
 }
 
-wk.register {
-  name = 'Tree',
-  ['\\'] = { '<cmd>Neotree toggle<cr>', 'Toggle Neotree' },
-}
-
 wk.register({
   name = 'Copy/Paste',
   y = { '"+y', 'Yank to clipboard' },
@@ -92,16 +84,12 @@ wk.register({
 
 wk.register {
   name = 'Windows',
-  ['<c-h>'] = { '<c-w>h', 'Move to left window' },
-  ['<c-j>'] = { '<c-w>j', 'Move to bottom window' },
-  ['<c-k>'] = { '<c-w>k', 'Move to top window' },
-  ['<c-l>'] = { '<c-w>l', 'Move to right window' },
   ['<leader>s'] = {
     h = { '<c-w>n', 'New Horizontal Split' },
     v = { '<c-w>v', 'New Vertical Split' },
     e = { '<c-w>=', 'Reset Splits' },
     w = { '<c-w>c', 'Close Current Split' },
-    m = { '<cmd>MaximizerToggle<cr>', 'Maximize Current Split'}
+    m = { '<cmd>MaximizerToggle<cr>', 'Maximize Current Split' },
   },
 }
 

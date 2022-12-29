@@ -41,11 +41,10 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
   underline = true,
 })
 
--- map both hint and info to info?
 local severity = { 'error', 'warn', 'info', 'hint' }
 
-lsp.handlers['window/showMessage'] = function(err, method, params, client_id)
-  vim.notify(method.message, severity[params.type])
+lsp.handlers['window/showMessage'] = function(_, method, params, _)
+  vim.notify(method.message, severity[params.type], { title = 'LSP' })
 end
 
 local signature = Safe 'lsp_signature'
@@ -183,7 +182,7 @@ end
 -- null-ls setup
 local null_fmt = null_ls.builtins.formatting
 local null_diag = null_ls.builtins.diagnostics
-local null_act = null_ls.builtins.code_actions
+-- local null_act = null_ls.builtins.code_actions
 null_ls.setup {
   sources = {
     null_diag.proselint,
@@ -196,7 +195,7 @@ null_ls.setup {
     null_fmt.trim_whitespace,
     null_ls.builtins.code_actions.gitsigns,
     -- null_act.refactoring.with {
-      -- filetypes = { 'javascript', 'typescript', 'lua' },
+    -- filetypes = { 'javascript', 'typescript', 'lua' },
     -- },
   },
   on_attach = on_attach,

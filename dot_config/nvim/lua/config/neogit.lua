@@ -6,6 +6,6 @@ Safe('neogit').setup({
         item = {'', ''}
     },
     integrations = {
-      -- diffview = true
+      diffview = true
     }
 })

@@ -62,13 +62,14 @@ local function recent_files()
 end
 
 local commands = {
-  { key = 'e', disp = '  New file', cmd = 'ene | startinsert', editing = true },
-  { key = 'u', disp = '  Update plugins', cmd = 'PackerUpdate' },
-  { key = 'b', disp = '  File Browser', cmd = 'Neotree toggle' },
-  { key = 'r', disp = '  Recent files', cmd = 'Telescope oldfiles theme=get_dropdown' },
-  { key = 'f', disp = '  Find files', cmd = 'Telescope find_files theme=get_dropdown' },
-  { key = 'g', disp = '  NeoGit', cmd = 'Neogit' },
-  { key = 't', disp = '  Time startup', cmd = 'StartupTime' },
+  { key = 'n', disp = '  New file', cmd = 'ene | startinsert', editing = true },
+  { key = '\\', disp = '  File Tree', cmd = 'Neotree toggle', editing = true },
+  { key = 'r', disp = '  Recent files', cmd = 'Telescope oldfiles theme=get_dropdown', editing = true },
+  { key = 'f', disp = '  Find files', cmd = 'Telescope find_files theme=get_dropdown', editing = true },
+  { key = 'l', disp = '  Live grep', cmd = 'Telescope live_grep theme=get_dropdown', editing = true },
+  { key = 'g', disp = '  Git', cmd = 'Neogit' },
+  { key = 'u', disp = '  Update plugins', cmd = 'PackerSync' },
+  { key = 's', disp = '  Startup time ', cmd = 'StartupTime' },
   { key = 'q', disp = '  Quit', cmd = 'qa' },
 }
 
@@ -143,6 +144,7 @@ local function make_sections()
         highlight(0, -1, 'StartifyNumber', linenr + size, section_indent + 1, section_indent + 1 + key_len)
         highlight(0, -1, 'StartifyBracket', linenr + size, section_indent + 1 + key_len, section_indent + 2 + key_len)
         keybindings[#keybindings + 1] = { key = key, cmd = item.cmd, editing = item.editing }
+
         size = size + 1
       end
 
@@ -188,7 +190,6 @@ local function do_binding(binding)
   if binding.editing then
     vim.cmd [[ doautocmd User ActuallyEditing ]]
   end
-
   vim.cmd(binding.cmd)
 end
 

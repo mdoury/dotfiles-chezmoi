@@ -8,20 +8,16 @@ local ensure_packer = function()
   end
   return false
 end
-local packer_bootstrap = ensure_packer()
 
+local packer_bootstrap = ensure_packer()
 local packer = nil
 local function init()
   if packer == nil then
     packer = Safe 'packer'
-    if packer == nil then
-      vim.notify 'Packer not found'
-      return
-    end
     packer.init {
-      -- profile = {
-      --     enable = true
-      -- },
+      profile = {
+        enable = true,
+      },
       disable_commands = true,
       display = {
         open_fn = function()
@@ -127,7 +123,7 @@ local function init()
     },
     {
       'andymass/vim-matchup',
-      setup = function()
+      config = function()
         Safe 'config.matchup'
       end,
       event = 'User ActuallyEditing',
@@ -157,8 +153,14 @@ local function init()
 
   use { 'nvim-lua/plenary.nvim' }
 
-  use { 'christoomey/vim-tmux-navigator' }
-
+  -- Window management
+  use {
+    'christoomey/vim-tmux-navigator',
+    config = function()
+      vim.g.tmux_navigator_save_on_switch = 2
+			vim.g.tmux_navigator_preserve_zoom = 1
+    end,
+  }
   use { 'szw/vim-maximizer', cmd = 'MaximizerToggle' }
 
   -- use { 'inkarkat/vim-ReplaceWithRegister' }
@@ -167,6 +169,16 @@ local function init()
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v2.x',
+    setup = function()
+      vim.keymap.set('n', '\\', '<cmd>Neotree toggle<cr>', {
+        desc = 'Toggle Neotree',
+      })
+
+      -- local wk = Safe 'which-key'
+      -- wk.register({
+      --   ['\\'] = { '<cmd>Neotree toggle<cr>', 'Toggle Filesystem Tree' },
+      -- }, { prefix = '' })
+    end,
     config = function()
       -- Unless you are still migrating, remove the deprecated commands from v1.x
       vim.cmd [[ let g:neo_tree_remove_legacy_commands = 1 ]]
@@ -306,28 +318,29 @@ local function init()
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons', -- not strictly required, but recommended
       'MunifTanjim/nui.nvim',
-      {
-        -- only needed if you want to use the commands with "_with_window_picker" suffix
-        's1n7ax/nvim-window-picker',
-        tag = 'v1.*',
-        config = function()
-          Safe('window-picker').setup {
-            autoselect_one = true,
-            include_current = false,
-            filter_rules = {
-              -- filter using buffer options
-              bo = {
-                -- if the file type is one of following, the window will be ignored
-                filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
-
-                -- if the buffer type is one of following, the window will be ignored
-                buftype = { 'terminal', 'quickfix' },
-              },
-            },
-            other_win_hl_color = '#e35e4f',
-          }
-        end,
-      },
+      -- {
+      --   -- only needed if you want to use the commands with "_with_window_picker" suffix
+      --   's1n7ax/nvim-window-picker',
+      --   tag = 'v1.*',
+      --   config = function()
+      --     Safe('window-picker').setup {
+      --       autoselect_one = true,
+      --       include_current = false,
+      --       filter_rules = {
+      --         -- filter using buffer options
+      --         bo = {
+      --           -- if the file type is one of following, the window will be ignored
+      --           filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
+      --
+      --           -- if the buffer type is one of following, the window will be ignored
+      --           buftype = { 'terminal', 'quickfix' },
+      --         },
+      --       },
+      --       other_win_hl_color = '#e35e4f',
+      --     }
+      --   end,
+      --   after = 'neo-tree.nvim',
+      -- },
     },
     cmd = 'Neotree',
   }
@@ -357,7 +370,7 @@ local function init()
 
   -- Completion and linting
   use {
-    'neovim/nvim-lspconfig',
+    { 'neovim/nvim-lspconfig' },
     {
       'folke/trouble.nvim',
       cmd = { 'Trouble', 'TroubleClose', 'TroubleToggle', 'TroubleRefresh' },
@@ -372,8 +385,28 @@ local function init()
     },
   }
 
+  -- Completion
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      'hrsh7th/cmp-nvim-lsp',
+      'onsails/lspkind.nvim',
+      { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+      'lukas-reineke/cmp-under-comparator',
+      { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
+    },
+    config = [[require('config.cmp')]],
+    event = 'InsertEnter',
+    wants = 'LuaSnip',
+  }
+
   -- Colorscheme
-  use { 'arcticicestudio/nord-vim', event = 'User ActuallyEditing'}
+  use { 'arcticicestudio/nord-vim', event = 'User ActuallyEditing' }
 
   -- Pretty UI
   use 'stevearc/dressing.nvim'
@@ -387,6 +420,8 @@ local function init()
       Safe('todo-comments').setup {}
     end,
   }
+
+  -- Status line
   use {
     'nvim-lualine/lualine.nvim',
     requires = {
@@ -419,16 +454,7 @@ local function init()
   }
 
   use {
-    'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path' },
-  }
-
-  use {
     'L3MON4D3/LuaSnip',
-    event = 'InsertEnter',
-  }
-  use {
-    'saadparwaiz1/cmp_luasnip',
     event = 'InsertEnter',
   }
   use {
@@ -442,34 +468,29 @@ local function init()
     config = function()
       Safe 'config.mason'
     end,
+    requires = {
+      { 'williamboman/mason-lspconfig.nvim', after = 'mason.nvim' },
+      { 'jose-elias-alvarez/null-ls.nvim', after = 'mason.nvim' },
+      { 'jayp0521/mason-null-ls.nvim', after = 'mason.nvim' },
+    },
   }
 
-  use {
-    'williamboman/mason-lspconfig.nvim',
-    event = 'User ActuallyEditing',
-  }
-
-  use { 'hrsh7th/cmp-nvim-lsp' }
-  use {
-    'glepnir/lspsaga.nvim',
-    branch = 'main',
-  }
+  -- use {
+  --   'glepnir/lspsaga.nvim',
+  --   branch = 'main',
+  --   config = function()
+  --     local saga = Safe 'lspsaga'
+  --     saga.init_lsp_saga {}
+  --   end,
+  -- }
+  --
   use { 'jose-elias-alvarez/typescript.nvim' }
-  use { 'onsails/lspkind.nvim' }
 
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    -- event = 'User ActuallyEditing',
-  }
   use {
     'filipdutescu/renamer.nvim',
     branch = 'master',
     requires = { { 'nvim-lua/plenary.nvim' } },
     module = 'renamer',
-    event = 'User ActuallyEditing',
-  }
-  use {
-    'jayp0521/mason-null-ls.nvim',
     event = 'User ActuallyEditing',
   }
 
@@ -506,11 +527,11 @@ local function init()
       config = [[Safe('config.neogit')]],
       requires = {
         { 'nvim-lua/plenary.nvim' },
-        -- {
-        --   'sindrets/diffview.nvim',
-        --   after = "neogit",
-        --   opt = true
-        -- },
+        {
+          'sindrets/diffview.nvim',
+          after = 'neogit',
+          opt = true,
+        },
       },
     },
     {
@@ -547,16 +568,7 @@ local function init()
     'DNLHC/glance.nvim',
     cmd = 'Glance',
     config = function()
-      Safe('glance').setup {
-        border = {
-          enable = true,
-          top_char = '─',
-          bottom_char = '─',
-        },
-        indent_lines = {
-          icon = '│',
-        },
-      }
+      Safe('glance').setup {}
     end,
   }
 
