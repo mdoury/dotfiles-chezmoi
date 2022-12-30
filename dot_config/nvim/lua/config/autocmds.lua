@@ -26,7 +26,7 @@ autocmd('TextYankPost', {
 autocmd('FileType', { group = misc_aucmds, pattern = 'qf', command = 'set nobuflisted' })
 vim.cmd [[silent! autocmd! FileExplorer *]]
 
-autocmd('BufReadPre', {
+autocmd('BufReadPost', {
   group = misc_aucmds,
   once = true,
   callback = function()
