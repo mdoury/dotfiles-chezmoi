@@ -67,7 +67,7 @@ local commands = {
   { key = 'r', disp = '  Recent files', cmd = 'Telescope oldfiles theme=get_dropdown', editing = true },
   { key = 'f', disp = '  Find files', cmd = 'Telescope find_files theme=get_dropdown', editing = true },
   { key = 'l', disp = '  Live grep', cmd = 'Telescope live_grep theme=get_dropdown', editing = true },
-  { key = 'g', disp = '  Git', cmd = 'Neogit' },
+  { key = 'g', disp = '  Git', cmd = 'Neogit', editing = true },
   { key = 'u', disp = '  Update plugins', cmd = 'PackerSync' },
   { key = 's', disp = '  Startup time ', cmd = 'StartupTime' },
   { key = 'q', disp = '  Quit', cmd = 'qa' },
