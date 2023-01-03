@@ -10,23 +10,35 @@ local cmd = vim.cmd
 -- vim.api.nvim_command 'hi link LightBulbFloatWin YellowFloat'
 -- vim.api.nvim_command 'hi link LightBulbVirtualText YellowFloat'
 
-local sign_define = vim.fn.sign_define
-sign_define('DiagnosticSignError', {
-  text = '',
-  numhl = 'RedSign',
-})
-sign_define('DiagnosticSignWarn', {
-  text = '',
-  numhl = 'YellowSign',
-})
-sign_define('DiagnosticSignInfo', {
-  text = '',
-  numhl = 'WhiteSign',
-})
-sign_define('DiagnosticSignHint', {
-  text = '',
-  numhl = 'BlueSign',
-})
+-- local sign_define = vim.fn.sign_define
+-- sign_define('DiagnosticSignError', {
+--   text = '',
+--   numhl = 'RedSign',
+-- })
+-- sign_define('DiagnosticSignWarn', {
+--   text = '',
+--   numhl = 'YellowSign',
+-- })
+-- sign_define('DiagnosticSignInfo', {
+--   text = '',
+--   numhl = 'WhiteSign',
+-- })
+-- sign_define('DiagnosticSignHint', {
+--   text = '',
+--   numhl = 'BlueSign',
+-- })
+
+local signs = {
+  Error = ' ',
+  Warn = ' ',
+  Hint = ' ',
+  Info = ' ',
+}
+
+for type, icon in pairs(signs) do
+  local hl = 'DiagnosticSign' .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl })
+end
 
 vim.diagnostic.config {
   virtual_lines = {
@@ -34,6 +46,7 @@ vim.diagnostic.config {
   },
   virtual_text = false,
 }
+
 lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = false,
   signs = true,
@@ -174,7 +187,6 @@ for server, config in pairs(servers) do
   elseif not config.on_attach then
     config.on_attach = on_attach
   end
-
   config.capabilities = vim.tbl_deep_extend('keep', config.capabilities or {}, client_capabilities)
   lspconfig[server].setup(config)
 end
@@ -182,7 +194,7 @@ end
 -- null-ls setup
 local null_fmt = null_ls.builtins.formatting
 local null_diag = null_ls.builtins.diagnostics
--- local null_act = null_ls.builtins.code_actions
+local null_act = null_ls.builtins.code_actions
 null_ls.setup {
   sources = {
     null_diag.proselint,
@@ -193,7 +205,7 @@ null_ls.setup {
     null_fmt.shfmt,
     null_fmt.stylua,
     null_fmt.trim_whitespace,
-    null_ls.builtins.code_actions.gitsigns,
+    null_act.gitsigns,
     -- null_act.refactoring.with {
     -- filetypes = { 'javascript', 'typescript', 'lua' },
     -- },
