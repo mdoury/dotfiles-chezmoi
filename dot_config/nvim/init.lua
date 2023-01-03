@@ -1,5 +1,3 @@
-require 'impatient'
-
 function Safe(package)
   local status, module = pcall(require, package)
   if status == nil then
@@ -8,6 +6,8 @@ function Safe(package)
     return module
   end
 end
+
+Safe 'impatient'
 
 vim.notify = function(_, m, l, o)
   local notify = Safe 'notify'
