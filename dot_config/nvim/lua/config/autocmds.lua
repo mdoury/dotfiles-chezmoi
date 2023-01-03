@@ -10,6 +10,11 @@ autocmd('VimEnter', {
     Safe('start').start()
   end,
 })
+autocmd('BufWritePost', {
+	group = augroup('packer_user_config', {clear = true}),
+	pattern = "plugins.lua",
+	command = 'source <afile> | PackerSync'
+})
 local misc_aucmds = augroup('misc_aucmds', {
   clear = true,
 })
