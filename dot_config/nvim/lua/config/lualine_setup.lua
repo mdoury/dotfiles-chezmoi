@@ -11,8 +11,8 @@ local function diff_source()
   end
 end
 
-local custom_fname = require('lualine.components.filename'):extend()
-local highlight = require 'lualine.highlight'
+local custom_fname = Safe('lualine.components.filename'):extend()
+local highlight = Safe 'lualine.highlight'
 local default_status_colors = { saved = '#ECEFF4', modified = '#8FBCBB' }
 
 function custom_fname:init(options)
@@ -25,7 +25,7 @@ function custom_fname:init(options)
       self.options
     ),
     modified = highlight.create_component_highlight_group(
-      { fg = default_status_colors.modified , gui = 'bold'},
+      { fg = default_status_colors.modified, gui = 'bold' },
       'filename_status_modified',
       self.options
     ),
@@ -43,4 +43,8 @@ function custom_fname:update_status()
   return data
 end
 
-lualine.setup { sections = { lualine_c = { custom_fname } }, theme = 'nord', { 'diff', source = diff_source } }
+lualine.setup {
+  sections = { lualine_c = { custom_fname } },
+  options = { theme = 'nord', globalstatus = true },
+  { 'diff', source = diff_source },
+}
