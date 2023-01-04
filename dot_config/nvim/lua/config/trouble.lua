@@ -1,0 +1,1 @@
+Safe('trouble').setup {}

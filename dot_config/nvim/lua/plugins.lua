@@ -18,12 +18,8 @@ local function config()
   -- Async building & commands
   use {
     'ojroques/nvim-bufdel',
+    config = [[Safe 'config.bufdel']],
     cmd = 'BufDel',
-    config = function()
-      Safe('bufdel').setup {
-        quit = false,
-      }
-    end,
   }
 
   -- Keymap assistant
@@ -41,33 +37,21 @@ local function config()
     },
     {
       'ggandor/leap.nvim',
-      event = 'User ActuallyEditing',
       requires = 'tpope/vim-repeat',
+      event = 'User ActuallyEditing',
     },
     {
       'ggandor/flit.nvim',
-      config = function()
-        Safe('flit').setup {
-          labeled_modes = 'nv',
-        }
-      end,
+      config = [[Safe 'config.flit']],
       event = 'User ActuallyEditing',
     },
-  }
-
-  -- Indentation lines
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    after = 'nvim-treesitter',
   }
 
   -- Commenting
   use {
     'numToStr/Comment.nvim',
     event = 'User ActuallyEditing',
-    config = function()
-      Safe('Comment').setup {}
-    end,
+    config = [[Safe 'config.comment']],
   }
 
   -- Wrapping/delimiters
@@ -102,10 +86,7 @@ local function config()
   -- Split navigation across vim and tmux
   use {
     'christoomey/vim-tmux-navigator',
-    config = function()
-      vim.g.tmux_navigator_save_on_switch = 2
-      vim.g.tmux_navigator_preserve_zoom = 1
-    end,
+    config = [[Safe 'config.tmux_navigator']],
   }
 
   -- Maximize current vim split
@@ -118,11 +99,7 @@ local function config()
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v2.x',
-    setup = function()
-      vim.keymap.set('n', '\\', '<cmd>Neotree toggle<cr>', {
-        desc = 'Toggle Neotree',
-      })
-    end,
+    setup = [[Safe 'config.neotree_setup']],
     config = [[Safe 'config.neotree']],
     requires = {
       'nvim-lua/plenary.nvim',
@@ -154,6 +131,14 @@ local function config()
         'RRethy/nvim-treesitter-textsubjects',
         after = 'nvim-treesitter',
       },
+      {
+        'lukas-reineke/indent-blankline.nvim',
+        after = 'nvim-treesitter',
+      },
+      {
+        'windwp/nvim-ts-autotag',
+        after = 'nvim-treesitter',
+      },
     },
     run = ':TSUpdate',
     event = 'User ActuallyEditing',
@@ -165,10 +150,8 @@ local function config()
     { 'neovim/nvim-lspconfig' },
     {
       'folke/trouble.nvim',
+      config = [[Safe 'config.trouble']],
       cmd = { 'Trouble', 'TroubleClose', 'TroubleToggle', 'TroubleRefresh' },
-      config = function()
-        Safe('trouble').setup {}
-      end,
     },
     'ray-x/lsp_signature.nvim',
     {
@@ -182,35 +165,37 @@ local function config()
     'hrsh7th/nvim-cmp',
     requires = {
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      'hrsh7th/cmp-nvim-lsp',
-      'onsails/lspkind.nvim',
-      { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-      { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-      'lukas-reineke/cmp-under-comparator',
       { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+      { 'onsails/lspkind.nvim' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'lukas-reineke/cmp-under-comparator' },
     },
-    config = [[require('config.cmp')]],
+    config = [[Safe 'config.cmp']],
     event = 'InsertEnter',
     wants = 'LuaSnip',
   }
 
   --	Pretty UI
-  use 'stevearc/dressing.nvim'
+  use { 'stevearc/dressing.nvim' }
 
   -- Colorscheme
-  use 'shaunsingh/nord.nvim'
-  use 'rcarriga/nvim-notify'
-  use 'vigoux/notifier.nvim'
+  use { 'shaunsingh/nord.nvim' }
+
+  -- Notifications
+  use { 'rcarriga/nvim-notify' }
+  use { 'vigoux/notifier.nvim' }
+
+  -- TODO
   use {
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
     event = 'BufReadPost',
-    config = function()
-      Safe('todo-comments').setup {}
-    end,
+    config = [[Safe 'config.todo_comments']],
   }
 
   -- Status line
@@ -287,10 +272,6 @@ local function config()
     config = [[Safe 'config.autopairs']],
     event = 'User ActuallyEditing',
   }
-  use {
-    'windwp/nvim-ts-autotag',
-    after = 'nvim-treesitter',
-  }
 
   -- Git
   use {
@@ -316,9 +297,7 @@ local function config()
     {
       'akinsho/git-conflict.nvim',
       tag = '*',
-      config = function()
-        Safe('git-conflict').setup()
-      end,
+      config = [[Safe 'config.git_conflict']],
       event = 'BufReadPost',
     },
   }
@@ -332,9 +311,7 @@ local function config()
   use {
     'DNLHC/glance.nvim',
     cmd = 'Glance',
-    config = function()
-      Safe('glance').setup {}
-    end,
+    config = [[Safe 'config.glance']],
   }
 
   if packer.bootstrap then

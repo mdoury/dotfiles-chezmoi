@@ -1,0 +1,1 @@
+Safe('glance').setup {}

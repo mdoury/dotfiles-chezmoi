@@ -1,0 +1,1 @@
+Safe('git-conflict').setup()

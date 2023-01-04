@@ -23,6 +23,7 @@ Safe('nvim-treesitter.configs').setup {
     'vim',
     'dockerfile',
     'gitignore',
+		'git_rebase',
   },
   textsubjects = {
     enable = true,
