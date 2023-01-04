@@ -1,6 +1,6 @@
 -- Settings
 vim.opt.textwidth = 100
-vim.opt.scrolloff = 7
+vim.opt.scrolloff = 6
 vim.opt.wildignore = { '*.o', '*~', '*.pyc' }
 vim.opt.wildmode = 'longest,full'
 vim.opt.whichwrap:append '<,>,h,l'
@@ -19,6 +19,7 @@ vim.opt.smartindent = true
 vim.opt.laststatus = 3
 vim.opt.showmode = false
 vim.opt.shada = [['20,<50,s10,h,/100]]
+vim.opt.swapfile = false
 vim.opt.hidden = true
 vim.opt.shortmess:append 'c'
 vim.opt.joinspaces = false
@@ -37,4 +38,4 @@ vim.opt.signcolumn = 'yes:1'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.timeoutlen = 400
-vim.opt.fillchars = [[vert:│,horiz:─,eob: ]]
+-- vim.opt.fillchars = [[vert:│,horiz:─,eob: ]]

@@ -1,32 +1,13 @@
--- Safe('neodev').setup { lspconfig = { cmd = { 'lua-language-server' }, prefer_null_ls = true } }
 local lspconfig = Safe 'lspconfig'
 local null_ls = Safe 'null-ls'
 -- local lightbulb = Safe 'nvim-lightbulb'
 
 local lsp = vim.lsp
-local buf_keymap = vim.api.nvim_buf_set_keymap
+local map = vim.keymap.set
 local cmd = vim.cmd
 
 -- vim.api.nvim_command 'hi link LightBulbFloatWin YellowFloat'
 -- vim.api.nvim_command 'hi link LightBulbVirtualText YellowFloat'
-
--- local sign_define = vim.fn.sign_define
--- sign_define('DiagnosticSignError', {
---   text = '',
---   numhl = 'RedSign',
--- })
--- sign_define('DiagnosticSignWarn', {
---   text = '',
---   numhl = 'YellowSign',
--- })
--- sign_define('DiagnosticSignInfo', {
---   text = '',
---   numhl = 'WhiteSign',
--- })
--- sign_define('DiagnosticSignHint', {
---   text = '',
---   numhl = 'BlueSign',
--- })
 
 local signs = {
   Error = ' ',
@@ -68,7 +49,8 @@ signature.setup {
   },
 }
 local keymap_opts = {
-  noremap = true,
+  buffer = 0,
+  remap = false,
   silent = true,
 }
 
@@ -86,22 +68,20 @@ local function on_attach(client)
       border = 'single',
     },
   }
-  buf_keymap(0, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
-  buf_keymap(0, 'n', 'gd', '<cmd>Glance definitions<CR>', keymap_opts)
-  buf_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', keymap_opts)
-  buf_keymap(0, 'n', 'gi', '<cmd>Glance implementations<CR>', keymap_opts)
-  buf_keymap(0, 'n', 'gS', '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
-  buf_keymap(0, 'n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', keymap_opts)
-  buf_keymap(0, 'n', '<leader>rn', '<cmd>lua Safe"renamer".rename()<CR>', keymap_opts)
-  buf_keymap(0, 'v', '<leader>rn', '<cmd>lua Safe"renamer".rename()<CR>', keymap_opts)
-  buf_keymap(0, 'n', 'gr', '<cmd>Glance references<CR>', keymap_opts)
-  buf_keymap(0, 'n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', keymap_opts)
-  buf_keymap(0, 'v', 'gA', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', keymap_opts)
-  buf_keymap(0, 'n', ']e', '<cmd>lua vim.diagnostic.goto_next { float = {scope = "line"} }<cr>', keymap_opts)
-  buf_keymap(0, 'n', '[e', '<cmd>lua vim.diagnostic.goto_prev { float = {scope = "line"} }<cr>', keymap_opts)
+  map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
+  map('n', 'gd', '<cmd>Glance definitions<CR>', keymap_opts)
+  map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', keymap_opts)
+  map('n', 'gi', '<cmd>Glance implementations<CR>', keymap_opts)
+  map('n', 'gS', '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
+  map('n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', keymap_opts)
+  map('n', 'gr', '<cmd>Glance references<CR>', keymap_opts)
+  map('n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', keymap_opts)
+  map('v', 'gA', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', keymap_opts)
+  map('n', ']e', '<cmd>lua vim.diagnostic.goto_next { float = {scope = "line"} }<cr>', keymap_opts)
+  map('n', '[e', '<cmd>lua vim.diagnostic.goto_prev { float = {scope = "line"} }<cr>', keymap_opts)
 
   if client.server_capabilities.documentFormattingProvider then
-    buf_keymap(0, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.format { async = true }<cr>', keymap_opts)
+    map('n', '<leader>f', '<cmd>lua vim.lsp.buf.format { async = true }<cr>', keymap_opts)
   end
 
   cmd 'augroup lsp_aucmds'
@@ -128,7 +108,6 @@ local servers = {
     filetypes = { 'css', 'scss', 'less', 'sass' },
     root_dir = lspconfig.util.root_pattern('package.json', '.git'),
   },
-  -- ghcide = {},
   html = {
     cmd = { 'vscode-html-languageserver', '--stdio' },
   },

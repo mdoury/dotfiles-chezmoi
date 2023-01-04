@@ -212,21 +212,21 @@ end
 
 local function setup_keys()
   -- First, the nav keys
-  local map = vim.api.nvim_buf_set_keymap
-  map(0, 'n', 'h', '<NOP>', { noremap = true, silent = true })
-  map(0, 'n', 'l', '<NOP>', { noremap = true, silent = true })
-  map(0, 'n', 'j', '', { noremap = true, silent = true, callback = handle_j })
-  map(0, 'n', 'k', '', { noremap = true, silent = true, callback = handle_k })
-  map(0, 'n', '<cr>', '', { noremap = true, silent = true, callback = handle_cr })
+  local map = vim.keymap.set
+  map('n', 'h', '<NOP>', { buffer = 0, remap = false, silent = true })
+  map('n', 'l', '<NOP>', { buffer = 0, remap = false, silent = true })
+  map('n', 'j', handle_j, { buffer = 0, remap = false, silent = true })
+  map('n', 'k', handle_k, { buffer = 0, remap = false, silent = true })
+  map('n', '<cr>', handle_cr, { buffer = 0, remap = false, silent = true })
 
   -- Then, the defined keybindings
   for _, binding in ipairs(keybindings) do
-    map(0, 'n', tostring(binding.key), '', {
-      noremap = true,
-      silent = true,
-      callback = function()
+    map('n', tostring(binding.key), function()
         do_binding(binding)
-      end,
+      end, {
+			buffer = 0,
+      remap = false,
+      silent = true,
     })
   end
 end
