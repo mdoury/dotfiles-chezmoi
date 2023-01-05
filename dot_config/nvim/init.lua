@@ -7,7 +7,7 @@ function Safe(package)
   end
 end
 
-Safe 'impatient'
+Safe 'impatient'.enable_profile()
 
 vim.notify = function(_, m, l, o)
   local notify = Safe 'notify'
@@ -17,10 +17,10 @@ vim.notify = function(_, m, l, o)
   end
 end
 
-Safe 'config.disable_builtins'
-Safe 'config.options'
-Safe 'config.autocmds'
-Safe 'config.commands'
-Safe 'config.colorscheme'
-Safe 'config.lualine_setup'
-Safe 'config.keymaps_setup'
+Safe 'setup.disable_builtins'
+Safe 'setup.options'
+Safe 'setup.autocmds'
+Safe 'setup.commands'
+Safe 'setup.colorscheme'
+Safe 'setup.lualine'
+Safe 'setup.keymaps'

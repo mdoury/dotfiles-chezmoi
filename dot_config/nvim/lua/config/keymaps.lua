@@ -10,6 +10,7 @@ wk.register({
   b = { '<cmd>Telescope buffers show_all_buffers=true theme=get_dropdown<cr>', 'Find Buffer' },
   s = { '<cmd>Telescope git_files theme=get_dropdown<cr>', 'Find Git File' },
   g = { '<cmd>Telescope live_grep theme=get_dropdown<cr>', 'Find File By Content' },
+  n = { '<cmd>Telescope notify theme=get_dropdown<cr>', 'Find Notification' },
 }, {
   prefix = '<leader>f',
 })

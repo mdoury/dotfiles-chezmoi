@@ -1,7 +1,6 @@
-local packer = Safe 'config.packer'
-local use = packer.use
+local packer = Safe 'setup.packer'
 
-local function config()
+local function config(use)
   -- Plugin manager
   use 'wbthomason/packer.nvim'
 
@@ -99,7 +98,7 @@ local function config()
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v2.x',
-    setup = [[Safe 'config.neotree_setup']],
+    setup = [[Safe 'setup.neotree']],
     config = [[Safe 'config.neotree']],
     requires = {
       'nvim-lua/plenary.nvim',
@@ -188,7 +187,6 @@ local function config()
 
   -- Notifications
   use { 'rcarriga/nvim-notify' }
-  use { 'vigoux/notifier.nvim' }
 
   -- TODO
   use {
@@ -321,7 +319,7 @@ end
 
 local plugins = setmetatable({}, {
   __index = function(_, key)
-    config()
+    config(packer.use)
     return packer[key]
   end,
 })
