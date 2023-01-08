@@ -324,11 +324,6 @@ _G.packer_plugins = {
     path = "/Users/maiia/.local/share/nvim/site/pack/packer/start/nord.nvim",
     url = "https://github.com/shaunsingh/nord.nvim"
   },
-  ["notifier.nvim"] = {
-    loaded = true,
-    path = "/Users/maiia/.local/share/nvim/site/pack/packer/start/notifier.nvim",
-    url = "https://github.com/vigoux/notifier.nvim"
-  },
   ["nui.nvim"] = {
     loaded = true,
     path = "/Users/maiia/.local/share/nvim/site/pack/packer/start/nui.nvim",
@@ -361,7 +356,7 @@ _G.packer_plugins = {
     url = "https://github.com/ojroques/nvim-bufdel"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-nvim-lsp-signature-help", "cmp-path", "cmp-cmdline", "cmp-nvim-lsp-document-symbol", "cmp-nvim-lua", "cmp-buffer", "cmp_luasnip" },
+    after = { "cmp_luasnip", "cmp-nvim-lua", "cmp-cmdline", "cmp-nvim-lsp-signature-help", "cmp-path", "cmp-buffer", "cmp-nvim-lsp-document-symbol" },
     config = { "Safe 'config.cmp'" },
     loaded = false,
     needs_bufread = false,
@@ -386,7 +381,7 @@ _G.packer_plugins = {
     url = "https://github.com/rcarriga/nvim-notify"
   },
   ["nvim-treesitter"] = {
-    after = { "indent-blankline.nvim", "nvim-treesitter-textobjects", "nvim-treesitter-refactor", "nvim-ts-autotag", "nvim-treesitter-textsubjects" },
+    after = { "nvim-treesitter-textsubjects", "nvim-ts-autotag", "nvim-treesitter-refactor", "indent-blankline.nvim", "nvim-treesitter-textobjects" },
     config = { "Safe 'config.treesitter'" },
     loaded = false,
     needs_bufread = false,
@@ -651,19 +646,12 @@ pcall(vim.api.nvim_create_user_command, 'BufDel', function(cmdargs)
           require('packer.load')({'nvim-bufdel'}, { cmd = 'BufDel' }, _G.packer_plugins)
           return vim.fn.getcompletion('BufDel ', 'cmdline')
       end})
-pcall(vim.api.nvim_create_user_command, 'StartupTime', function(cmdargs)
-          require('packer.load')({'vim-startuptime'}, { cmd = 'StartupTime', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+pcall(vim.api.nvim_create_user_command, 'Glance', function(cmdargs)
+          require('packer.load')({'glance.nvim'}, { cmd = 'Glance', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'vim-startuptime'}, { cmd = 'StartupTime' }, _G.packer_plugins)
-          return vim.fn.getcompletion('StartupTime ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'Neogit', function(cmdargs)
-          require('packer.load')({'neogit'}, { cmd = 'Neogit', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'neogit'}, { cmd = 'Neogit' }, _G.packer_plugins)
-          return vim.fn.getcompletion('Neogit ', 'cmdline')
+          require('packer.load')({'glance.nvim'}, { cmd = 'Glance' }, _G.packer_plugins)
+          return vim.fn.getcompletion('Glance ', 'cmdline')
       end})
 pcall(vim.api.nvim_create_user_command, 'TroubleClose', function(cmdargs)
           require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleClose', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
@@ -672,13 +660,6 @@ pcall(vim.api.nvim_create_user_command, 'TroubleClose', function(cmdargs)
           require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleClose' }, _G.packer_plugins)
           return vim.fn.getcompletion('TroubleClose ', 'cmdline')
       end})
-pcall(vim.api.nvim_create_user_command, 'UndotreeToggle', function(cmdargs)
-          require('packer.load')({'undotree'}, { cmd = 'UndotreeToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'undotree'}, { cmd = 'UndotreeToggle' }, _G.packer_plugins)
-          return vim.fn.getcompletion('UndotreeToggle ', 'cmdline')
-      end})
 pcall(vim.api.nvim_create_user_command, 'TroubleToggle', function(cmdargs)
           require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
@@ -686,26 +667,12 @@ pcall(vim.api.nvim_create_user_command, 'TroubleToggle', function(cmdargs)
           require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleToggle' }, _G.packer_plugins)
           return vim.fn.getcompletion('TroubleToggle ', 'cmdline')
       end})
-pcall(vim.api.nvim_create_user_command, 'MaximizerToggle', function(cmdargs)
-          require('packer.load')({'vim-maximizer'}, { cmd = 'MaximizerToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+pcall(vim.api.nvim_create_user_command, 'UndotreeToggle', function(cmdargs)
+          require('packer.load')({'undotree'}, { cmd = 'UndotreeToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'vim-maximizer'}, { cmd = 'MaximizerToggle' }, _G.packer_plugins)
-          return vim.fn.getcompletion('MaximizerToggle ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'Neotree', function(cmdargs)
-          require('packer.load')({'neo-tree.nvim'}, { cmd = 'Neotree', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'neo-tree.nvim'}, { cmd = 'Neotree' }, _G.packer_plugins)
-          return vim.fn.getcompletion('Neotree ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'Glance', function(cmdargs)
-          require('packer.load')({'glance.nvim'}, { cmd = 'Glance', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'glance.nvim'}, { cmd = 'Glance' }, _G.packer_plugins)
-          return vim.fn.getcompletion('Glance ', 'cmdline')
+          require('packer.load')({'undotree'}, { cmd = 'UndotreeToggle' }, _G.packer_plugins)
+          return vim.fn.getcompletion('UndotreeToggle ', 'cmdline')
       end})
 pcall(vim.api.nvim_create_user_command, 'TroubleRefresh', function(cmdargs)
           require('packer.load')({'trouble.nvim'}, { cmd = 'TroubleRefresh', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
@@ -721,12 +688,40 @@ pcall(vim.api.nvim_create_user_command, 'Telescope', function(cmdargs)
           require('packer.load')({'telescope.nvim'}, { cmd = 'Telescope' }, _G.packer_plugins)
           return vim.fn.getcompletion('Telescope ', 'cmdline')
       end})
+pcall(vim.api.nvim_create_user_command, 'MaximizerToggle', function(cmdargs)
+          require('packer.load')({'vim-maximizer'}, { cmd = 'MaximizerToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'vim-maximizer'}, { cmd = 'MaximizerToggle' }, _G.packer_plugins)
+          return vim.fn.getcompletion('MaximizerToggle ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Neogit', function(cmdargs)
+          require('packer.load')({'neogit'}, { cmd = 'Neogit', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'neogit'}, { cmd = 'Neogit' }, _G.packer_plugins)
+          return vim.fn.getcompletion('Neogit ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'StartupTime', function(cmdargs)
+          require('packer.load')({'vim-startuptime'}, { cmd = 'StartupTime', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'vim-startuptime'}, { cmd = 'StartupTime' }, _G.packer_plugins)
+          return vim.fn.getcompletion('StartupTime ', 'cmdline')
+      end})
 pcall(vim.api.nvim_create_user_command, 'Trouble', function(cmdargs)
           require('packer.load')({'trouble.nvim'}, { cmd = 'Trouble', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
           require('packer.load')({'trouble.nvim'}, { cmd = 'Trouble' }, _G.packer_plugins)
           return vim.fn.getcompletion('Trouble ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Neotree', function(cmdargs)
+          require('packer.load')({'neo-tree.nvim'}, { cmd = 'Neotree', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'neo-tree.nvim'}, { cmd = 'Neotree' }, _G.packer_plugins)
+          return vim.fn.getcompletion('Neotree ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)
 
@@ -735,8 +730,8 @@ vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-cmp', 'LuaSnip', 'friendly-snippets'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au User ActuallyEditing ++once lua require("packer.load")({'nvim-treesitter', 'Comment.nvim', 'nvim-autopairs', 'mason.nvim', 'renamer.nvim', 'which-key.nvim', 'vim-wordmotion', 'vim-sandwich', 'vim-matchup', 'leap.nvim', 'gitsigns.nvim', 'flit.nvim'}, { event = "User ActuallyEditing" }, _G.packer_plugins)]]
-vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'hover.nvim', 'todo-comments.nvim', 'git-conflict.nvim'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'git-conflict.nvim', 'todo-comments.nvim', 'hover.nvim'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
+vim.cmd [[au User ActuallyEditing ++once lua require("packer.load")({'gitsigns.nvim', 'mason.nvim', 'leap.nvim', 'renamer.nvim', 'which-key.nvim', 'Comment.nvim', 'vim-wordmotion', 'nvim-autopairs', 'vim-matchup', 'flit.nvim', 'vim-sandwich', 'nvim-treesitter'}, { event = "User ActuallyEditing" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 
