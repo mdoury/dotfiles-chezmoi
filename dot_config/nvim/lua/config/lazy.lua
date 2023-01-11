@@ -9,39 +9,38 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 -- Add additional empty parameter:
 -- opts type is not correctly inferred because the setup function is overloaded
 require("lazy").setup({
-  spec = {
-    -- import LazyVim plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import/override with your plugins
-    { import = "plugins" },
-    -- import any extras modules here
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-  },
-  defaults = {
-    lazy = true, -- every plugin is lazy-loaded by default
-    version = "*", -- try installing the latest stable version for plugins that support semver
-  },
-  ---@type LazyConfig["dev"]
-  dev = {
-    path = "~/Dev",
-    patterns = {},
-  },
-  install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = true }, -- automatically check for plugin updates
-  performance = {
-    rtp = {
-      -- disable some rtp plugins
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-      },
-    },
-  },
+	spec = {
+		-- import LazyVim plugins
+		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+		-- import/override with your plugins
+		{ import = "plugins" },
+		-- import any extras modules here
+		{ import = "lazyvim.plugins.extras.lang.typescript" },
+		{ import = "lazyvim.plugins.extras.lang.json" },
+	},
+	defaults = {
+		lazy = true, -- every plugin is lazy-loaded by default
+		version = "*", -- try installing the latest stable version for plugins that support semver
+	},
+	---@type LazyConfig["dev"]
+	dev = {
+		path = "~/Dev",
+		patterns = {},
+	},
+	checker = { enabled = true }, -- automatically check for plugin updates
+	performance = {
+		rtp = {
+			-- disable some rtp plugins
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
 })
