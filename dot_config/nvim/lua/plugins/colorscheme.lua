@@ -6,6 +6,23 @@ return {
 		opts = {
 			flavour = "mocha", -- latte, frappe, macchiato, mocha
 			term_colors = true,
+			color_overrides = {
+				mocha = {
+					base = "#000000",
+				},
+			},
+			highlight_overrides = {
+				mocha = function(C)
+					return {
+						TabLineSel = { bg = C.pink },
+						NvimTreeNormal = { bg = C.none },
+						CmpBorder = { fg = C.surface2 },
+						Pmenu = { bg = C.none },
+						NormalFloat = { bg = C.none },
+						TelescopeBorder = { link = "FloatBorder" },
+					}
+				end,
+			},
 			-- custom_highlights = function(colors) end,
 			integrations = {
 				cmp = true,
@@ -32,7 +49,7 @@ return {
 				},
 				navic = {
 					enabled = true,
-					custom_bg = "#11111B",
+					custom_bg = "#313244",
 				},
 				-- neogit = true,
 				neotree = true,

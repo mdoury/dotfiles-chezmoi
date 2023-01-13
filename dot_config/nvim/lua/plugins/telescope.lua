@@ -30,8 +30,9 @@ return {
 				mappings = {
 					i = {
 						-- close on <esc>, jk goes to normal mode
-						["<esc>"] = require("telescope.actions").close,
-						--
+						["<esc>"] = function(...)
+							require("telescope.actions").close(...)
+						end,
 					},
 				},
 				-- winblend = 0,

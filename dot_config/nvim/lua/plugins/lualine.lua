@@ -1,77 +1,22 @@
 return {
 	{
 		"nvim-lualine/lualine.nvim",
-		-- opts = {
-		-- 	theme = "catppuccin",
-		-- 	section_separators = { left = "", right = "" },
-		-- },
-		opts = function(_, opts)
+		opts = function()
 			local icons = require("lazyvim.config").icons
-			local C = require("catppuccin.palettes").get_palette()
-
-			local catppuccin = {}
-			catppuccin.normal = {
-				a = { bg = C.sapphire, fg = C.crust },
-				b = { bg = C.teal, fg = C.crust },
-				c = { bg = C.crust, fg = C.text },
-			}
-
-			catppuccin.insert = {
-				a = { bg = C.blue, fg = C.crust },
-				b = { bg = C.sky, fg = C.crust },
-				c = { bg = C.crust, fg = C.text },
-			}
-
-			catppuccin.terminal = {
-				a = { bg = C.green, fg = C.crust },
-				b = { bg = C.teal, fg = C.crust },
-				c = { bg = C.crust, fg = C.text },
-			}
-
-			catppuccin.command = {
-				a = { bg = C.pink, fg = C.crust },
-				b = { bg = C.rosewater, fg = C.crust },
-				c = { bg = C.crust, fg = C.text },
-			}
-
-			catppuccin.visual = {
-				a = { bg = C.lavender, fg = C.crust },
-				b = { bg = C.mauve, fg = C.crust },
-				c = { bg = C.crust, fg = C.text },
-			}
-
-			catppuccin.replace = {
-				a = { bg = C.red, fg = C.crust },
-				b = { bg = C.flamingo, fg = C.crust },
-				c = { bg = C.crust, fg = C.text },
-			}
-
-			catppuccin.inactive = {
-				a = { bg = C.crust, fg = C.text },
-				b = { bg = C.crust, fg = C.crust },
-				c = { bg = C.crust, fg = C.text },
-			}
-
-			local function fg(name)
-				return function()
-					---@type {foreground?:number}?
-					local hl = vim.api.nvim_get_hl_by_name(name, true)
-					return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
-				end
-			end
+			local theme = require("utils.catppuccin").lualine("mocha")
 
 			return {
 				options = {
-					theme = catppuccin,
+					theme = theme,
 					globalstatus = true,
 					icons_enabled = true,
 					disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
 					section_separators = { left = "", right = "" },
-					component_separators = { left = "", right = "" },
+					component_separators = "",
 				},
 				sections = {
-					lualine_a = { "mode" },
-					lualine_b = { "branch" },
+					lualine_a = { { "mode", icon = "" } },
+					lualine_b = {},
 					lualine_c = {
 						{
 							"diagnostics",
@@ -82,15 +27,9 @@ return {
 								hint = icons.diagnostics.Hint,
 							},
 						},
-						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-						{
-							"filename",
-							path = 0,
-							symbols = { modified = "  ", readonly = "", unnamed = "" },
-						},
 						{
 							function()
-								return require("nvim-navic").get_location()
+								return require("nvim-navic").get_location():sub(1, -3)
 							end,
 							cond = function()
 								return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
@@ -105,30 +44,41 @@ return {
 							cond = function()
 								return package.loaded["noice"] and require("noice").api.status.command.has()
 							end,
-							color = fg("Statement"),
+							color = theme.components.command,
 						},
 						{
-							function()
-								return require("noice").api.status.mode.get()
-							end,
-							cond = function()
-								return package.loaded["noice"] and require("noice").api.status.mode.has()
-							end,
-							color = fg("Constant"),
+							require("lazy.status").updates,
+							cond = require("lazy.status").has_updates,
+							color = theme.components.updates,
 						},
-						{ require("lazy.status").updates, cond = require("lazy.status").has_updates, color = fg("Special") },
 						{
 							"diff",
-							symbols = {
-								added = icons.git.added,
-								modified = icons.git.modified,
-								removed = icons.git.removed,
-							},
+							diff_color = theme.components.diff,
+							symbols = icons.git,
+						},
+						{
+							"branch",
+							icon = "",
+							color = theme.components.branch,
+							separator = { left = "" },
 						},
 					},
 					lualine_y = {
-						{ "progress", separator = "", padding = { left = 1, right = 0 } },
-						{ "location", padding = { left = 1, right = 1 } },
+						-- { "progress", separator = "", padding = { left = 1, right = 0 } },
+						-- { "location", padding = { left = 1, right = 1 } },
+						{ "filetype", icon_only = true, colored = false, separator = "", padding = { left = 1, right = 0 } },
+						{
+							"filename",
+							color = theme.components.filename,
+							file_status = false,
+						},
+						{
+							function()
+								return " " .. vim.fn.fnamemodify(require("lazyvim.util").get_root(), ":t")
+							end,
+							color = theme.components.root,
+							separator = { left = "" },
+						},
 					},
 					lualine_z = {
 						function()
